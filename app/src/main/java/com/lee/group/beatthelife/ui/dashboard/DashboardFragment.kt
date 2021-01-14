@@ -5,14 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.lee.group.beatthelife.R
+import com.lee.group.beatthelife.base.BaseBindingFragment
+import com.lee.group.beatthelife.databinding.FragmentDashboardBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DashboardFragment : Fragment() {
+class DashboardFragment : BaseBindingFragment<FragmentDashboardBinding>() {
 
     private val dashboardViewModel: DashboardViewModel by viewModels()
 
@@ -21,7 +22,8 @@ class DashboardFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
+        super.onCreateView(inflater, container, savedInstanceState)
+        val root = binding.root
         val textView: TextView = root.findViewById(R.id.text_dashboard)
         dashboardViewModel.text.observe(
             viewLifecycleOwner,
@@ -30,5 +32,9 @@ class DashboardFragment : Fragment() {
             }
         )
         return root
+    }
+
+    override fun provideBinding(container: ViewGroup?): FragmentDashboardBinding {
+        return FragmentDashboardBinding.inflate(layoutInflater, container, false)
     }
 }
