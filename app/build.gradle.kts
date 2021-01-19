@@ -1,9 +1,11 @@
 plugins {
-    id ("com.android.application")
-    id ("kotlin-android")
-    id ("kotlin-kapt")
-    id ("dagger.hilt.android.plugin")
-    id ("lee.group.beat")
+    id("com.android.application")
+    id("kotlin-android")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
+    id("lee.group.beat")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 plugin_config {
@@ -36,7 +38,10 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
         getByName("debug") {
             isMinifyEnabled = false
@@ -74,6 +79,8 @@ dependencies {
     addKotlin()
     addConstraintLayout()
     addHilt()
+    addWorker()
+    addFireBase()
 
     implementation("androidx.core:core-ktx:1.3.2")
     implementation("androidx.appcompat:appcompat:1.2.0")
@@ -82,15 +89,4 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.2")
     implementation("androidx.navigation:navigation-ui-ktx:2.3.2")
-
-    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02")
-    // When using Kotlin.
-    kapt("androidx.hilt:hilt-compiler:1.0.0-alpha02")
-
-    testImplementation("junit:junit:4.13.1")
-    androidTestImplementation("androidx.test.ext:junit:1.1.2")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
-
-    implementation(platform("com.google.firebase:firebase-bom:26.2.0"))
-    implementation("com.google.firebase:firebase-analytics-ktx")
 }

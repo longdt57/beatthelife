@@ -41,35 +41,6 @@
           ]
         }
       }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:193409825368:android:3ed81ac02a0092bc2b682d",
-        "android_client_info": {
-          "package_name": "com.lee.group.beatthelife.uat"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "193409825368-goleo7h5dot911q5c2t3fusfm83erno8.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyC0brEzp8LSJOw1hn0zBuyq5rJY8fBjQ1c"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "193409825368-goleo7h5dot911q5c2t3fusfm83erno8.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
     }
   ],
   "configuration_version": "1"
