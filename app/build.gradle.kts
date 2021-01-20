@@ -28,17 +28,18 @@ android {
     }
 
     signingConfigs {
-        create("testSigned") {
-            storeFile = rootProject.file("data/keystore/leegroup.keystore")
-            storePassword = "yeuem1508"
-            keyAlias = "leegroup"
-            keyPassword = "yeuem1508"
+        create("qcSigined") {
+            storeFile = rootProject.file("data/signing/beou-testing.keystore")
+            storePassword = "beou123"
+            keyAlias = "beou"
+            keyPassword = "beou123"
         }
     }
 
     buildTypes {
         getByName("release") {
             isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -53,12 +54,11 @@ android {
         create("uat") {
             applicationIdSuffix = ".uat"
             versionNameSuffix = "-uat"
-            signingConfig = signingConfigs.getByName("testSigned")
+            signingConfig = signingConfigs.getByName("qcSigined")
             manifestPlaceholders["partner"] = "beatthelife-uat"
         }
 
         create("prod") {
-            signingConfig = signingConfigs.getByName("testSigned")
             manifestPlaceholders["partner"] = "beatthelife"
         }
     }
