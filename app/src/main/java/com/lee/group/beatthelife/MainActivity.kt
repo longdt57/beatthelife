@@ -14,7 +14,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : BaseBindingActivity<ActivityMainBinding, MainViewModel>() {
 
-    override val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    override val binding: ActivityMainBinding
+    by lazy { ActivityMainBinding.inflate(layoutInflater) }
+
     override val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {

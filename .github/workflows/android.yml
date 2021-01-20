@@ -20,4 +20,4 @@ jobs:
     - name: Ktlint
       run: ./gradlew ktlint
     - name: Build with Gradle
-      run: ./gradlew assembleProdRelease
+      run: ./gradlew assembleUatRelease
