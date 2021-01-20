@@ -1,11 +1,12 @@
 package com.lee.group.beatthelife.base
 
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
 
-abstract class BaseBindingActivity<T : ViewBinding> : AppCompatActivity() {
+abstract class BaseBindingActivity<T : ViewBinding, V : ViewModel> : AppCompatActivity() {
 
-    protected val binding: T by lazy { provideBinding() }
+    protected abstract val binding: T
 
-    protected abstract fun provideBinding(): T
+    protected abstract val viewModel: V
 }

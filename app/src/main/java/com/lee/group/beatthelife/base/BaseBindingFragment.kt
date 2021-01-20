@@ -5,21 +5,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
 
-abstract class BaseBindingFragment<T : ViewBinding> : Fragment() {
+abstract class BaseBindingFragment<T : ViewBinding, V : ViewModel> : Fragment() {
 
-    protected lateinit var binding: T
-        private set
+    protected val binding: T get() = _binding!!
+
+    protected var _binding: T? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = provideBinding(container)
+        inflateBinding(inflater, container)
         return binding.root
     }
 
-    protected abstract fun provideBinding(container: ViewGroup?): T
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
+    }
+
+    abstract fun inflateBinding(inflater: LayoutInflater, container: ViewGroup?)
 }

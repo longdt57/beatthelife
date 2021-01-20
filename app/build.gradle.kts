@@ -6,6 +6,7 @@ plugins {
     id("lee.group.beat")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
+    id("com.google.firebase.firebase-perf")
 }
 
 plugin_config {
@@ -81,6 +82,7 @@ dependencies {
     addHilt()
     addWorker()
     addFireBase()
+    addAuthentication()
 
     implementation("androidx.core:core-ktx:1.3.2")
     implementation("androidx.appcompat:appcompat:1.2.0")

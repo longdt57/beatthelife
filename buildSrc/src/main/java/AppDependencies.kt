@@ -15,7 +15,7 @@ object Versions {
     const val junit = "4.13.1"
     const val extJunit = "1.1.2"
     const val espresso = "3.3.0"
-    const val hilt = "2.30.1-alpha"
+    const val hilt = "2.31.1-alpha"
     const val hiltViewModel = "1.0.0-alpha02"
 
     const val work_version = "2.4.0"

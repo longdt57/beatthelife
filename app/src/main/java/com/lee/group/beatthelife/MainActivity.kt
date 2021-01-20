@@ -1,6 +1,7 @@
 package com.lee.group.beatthelife
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -11,7 +12,10 @@ import com.lee.group.beatthelife.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
+class MainActivity : BaseBindingActivity<ActivityMainBinding, MainViewModel>() {
+
+    override val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    override val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,9 +32,5 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-    }
-
-    override fun provideBinding(): ActivityMainBinding {
-        return ActivityMainBinding.inflate(layoutInflater)
     }
 }
