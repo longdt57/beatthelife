@@ -28,7 +28,7 @@ android {
     }
 
     signingConfigs {
-        create("qcSigined") {
+        create("testSigning") {
             storeFile = rootProject.file("data/signing/beou-testing.keystore")
             storePassword = "beou123"
             keyAlias = "beou"
@@ -54,7 +54,7 @@ android {
         create("uat") {
             applicationIdSuffix = ".uat"
             versionNameSuffix = "-uat"
-            signingConfig = signingConfigs.getByName("qcSigined")
+            signingConfig = signingConfigs.getByName("testSigning")
             manifestPlaceholders["partner"] = "beatthelife-uat"
         }
 
@@ -91,4 +91,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.2")
     implementation("androidx.navigation:navigation-ui-ktx:2.3.2")
+
+    implementation("com.google.android.material:material:1.2.0")
+    implementation("com.jakewharton.timber:timber:4.7.1")
 }

@@ -5,10 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class NotificationsViewModel @ViewModelInject constructor() : ViewModel() {
+class RelationViewModel @ViewModelInject constructor() : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
+        value = "This is Relation Fragment"
     }
     val text: LiveData<String> = _text
 }

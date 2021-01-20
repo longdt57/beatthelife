@@ -7,25 +7,24 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.lee.group.beatthelife.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class NotificationsFragment : Fragment() {
+class RelationFragment : Fragment() {
 
-    private val notificationsViewModel: NotificationsViewModel by viewModels()
+    private val relationViewModel: RelationViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_notifications, container, false)
+        val root = inflater.inflate(R.layout.fragment_relation, container, false)
         val textView: TextView = root.findViewById(R.id.text_notifications)
-        notificationsViewModel.text.observe(
+        relationViewModel.text.observe(
             viewLifecycleOwner,
-            Observer {
+            {
                 textView.text = it
             }
         )

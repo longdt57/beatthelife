@@ -10,6 +10,8 @@ import androidx.viewbinding.ViewBinding
 
 abstract class BaseBindingFragment<T : ViewBinding, V : ViewModel> : Fragment() {
 
+    protected abstract val viewModel: V
+
     protected val binding: T get() = _binding!!
 
     protected var _binding: T? = null
@@ -20,6 +22,8 @@ abstract class BaseBindingFragment<T : ViewBinding, V : ViewModel> : Fragment() 
         savedInstanceState: Bundle?
     ): View? {
         inflateBinding(inflater, container)
+        setupUI()
+        setupViewModel()
         return binding.root
     }
 
@@ -29,4 +33,8 @@ abstract class BaseBindingFragment<T : ViewBinding, V : ViewModel> : Fragment() 
     }
 
     abstract fun inflateBinding(inflater: LayoutInflater, container: ViewGroup?)
+
+    abstract fun setupUI()
+
+    abstract fun setupViewModel()
 }
