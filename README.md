@@ -9,6 +9,8 @@
 - ViewBinding
 - Firebase Authentication
 - Firebase Cloud FireStore
+- RxAndroid
+...
 
 ## Store:
 - Play Store: https://play.google.com/store/apps/details?id=com.lee.group.beatthelife
