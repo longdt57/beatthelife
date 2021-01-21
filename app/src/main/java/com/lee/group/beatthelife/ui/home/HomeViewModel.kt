@@ -1,17 +1,35 @@
 package com.lee.group.beatthelife.ui.home
 
-import android.content.Context
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.firebase.ui.auth.AuthUI
+import com.lee.group.beatthelife.base.viewmodel.BaseViewModel
 import com.lee.group.beatthelife.base.viewmodel.SingleLiveData
+import com.lee.group.beatthelife.data.IBeoURepository
+import io.reactivex.android.schedulers.AndroidSchedulers
+import timber.log.Timber
 
 class HomeViewModel @ViewModelInject constructor(
-) : ViewModel() {
+    private val beoURepository: IBeoURepository
+) : BaseViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
+    val signOutEvent: MutableLiveData<Boolean> = SingleLiveData()
+
+    fun signOut() {
+        beoURepository.signOut()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    signOutEvent.value = true
+                },
+                {
+                    Timber.e(it)
+                }
+            )
+            .add(this)
+    }
+
+    private val _text = SingleLiveData<String>().apply {
         value = "This is Beo U page"
     }
     val text: LiveData<String> = _text

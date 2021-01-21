@@ -1,8 +1,8 @@
 package com.lee.group.beatthelife
 
-import androidx.lifecycle.ViewModel
+import com.lee.group.beatthelife.base.viewmodel.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor() : ViewModel()
+class MainViewModel @Inject constructor() : BaseViewModel()

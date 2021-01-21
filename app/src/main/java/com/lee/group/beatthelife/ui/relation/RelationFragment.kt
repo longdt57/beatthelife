@@ -1,4 +1,4 @@
-package com.lee.group.beatthelife.ui.notifications
+package com.lee.group.beatthelife.ui.relation
 
 import android.os.Bundle
 import android.view.LayoutInflater

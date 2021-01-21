@@ -4,7 +4,6 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.firebase.ui.auth.AuthUI
 import com.lee.group.beatthelife.base.BaseBindingFragment
 import com.lee.group.beatthelife.databinding.FragmentHomeBinding
 import com.lee.group.beatthelife.ui.onboarding.OnBoardingActivity
@@ -17,11 +16,7 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding, HomeViewModel>() {
 
     override fun setupUI() {
         binding.btnSignOut.setOnClickListener {
-            AuthUI.getInstance()
-                .signOut(requireContext())
-                .addOnCompleteListener {
-                    signOutSuccess()
-                }
+            viewModel.signOut()
         }
     }
 
@@ -33,6 +28,14 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding, HomeViewModel>() {
             }
         )
 
+        viewModel.signOutEvent.observe(
+            viewLifecycleOwner,
+            {
+                if (it) {
+                    signOutSuccess()
+                }
+            }
+        )
     }
 
     override fun inflateBinding(inflater: LayoutInflater, container: ViewGroup?) {

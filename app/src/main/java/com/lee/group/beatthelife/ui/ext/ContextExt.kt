@@ -1,4 +1,4 @@
-package com.lee.group.beatthelife.ui
+package com.lee.group.beatthelife.ui.ext
 
 import android.content.Context
 import android.content.Intent
@@ -9,7 +9,7 @@ internal fun Context.getFirebaseUISignInIntent(): Intent {
     // Choose authentication providers
     val providers = arrayListOf(
         AuthUI.IdpConfig.GoogleBuilder().build(),
-        AuthUI.IdpConfig.PhoneBuilder().build()
+        AuthUI.IdpConfig.EmailBuilder().build()
     )
 
     // Create and launch sign-in intent

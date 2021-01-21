@@ -2,7 +2,6 @@ package com.lee.group.beatthelife.ui.onboarding
 
 import android.app.Activity
 import android.content.Intent
-import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
@@ -13,7 +12,7 @@ import com.lee.group.beatthelife.MainActivity
 import com.lee.group.beatthelife.R
 import com.lee.group.beatthelife.base.BaseBindingActivity
 import com.lee.group.beatthelife.databinding.ActivityOnboardingBinding
-import com.lee.group.beatthelife.ui.getFirebaseUISignInIntent
+import com.lee.group.beatthelife.ui.ext.getFirebaseUISignInIntent
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,31 +23,27 @@ class OnBoardingActivity : BaseBindingActivity<ActivityOnboardingBinding, OnBoar
 
     override val viewModel: OnBoardingViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(binding.root)
-        initUI()
-
-        startAuthentication()
-    }
-
-    private fun initUI() {
+    override fun setupUI() {
         binding.btnSignIn.setOnClickListener {
             openFirebaseUISignIn()
         }
+        startAuthentication()
     }
+
+    override fun setupViewModel() = Unit
 
     private fun startAuthentication() {
         val firebaseAuth = FirebaseAuth.getInstance()
         val uid = firebaseAuth.currentUser?.uid
         if (uid != null) {
             onAuthenticationSuccess(firebaseAuth.currentUser!!)
-            startActivity(Intent(this, MainActivity::class.java))
         }
     }
 
     private fun onAuthenticationSuccess(user: FirebaseUser) {
         FirebaseCrashlytics.getInstance().setUserId(user.uid)
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
     private fun onAuthenticationFailed() {

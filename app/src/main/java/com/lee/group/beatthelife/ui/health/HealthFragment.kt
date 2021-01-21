@@ -1,4 +1,4 @@
-package com.lee.group.beatthelife.ui.dashboard
+package com.lee.group.beatthelife.ui.health
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -94,4 +94,9 @@ dependencies {
 
     implementation("com.google.android.material:material:1.2.0")
     implementation("com.jakewharton.timber:timber:4.7.1")
+
+    // Rx
+    implementation("io.reactivex.rxjava2:rxjava:2.2.19")
+    implementation("io.reactivex.rxjava2:rxandroid:2.1.0")
+    implementation("io.reactivex.rxjava2:rxkotlin:2.1.0")
 }
