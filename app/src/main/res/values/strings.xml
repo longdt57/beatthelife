@@ -4,4 +4,7 @@
     <string name="title_health">Health</string>
     <string name="title_relation">Relation</string>
     <string name="title_career">Career</string>
+    <string name="authentication_failed">Sign In failed</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_out">Sign Out</string>
 </resources>

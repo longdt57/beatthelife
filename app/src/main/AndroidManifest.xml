@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BeatTheLife">
 
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity"/>
 
         <activity
             android:name=".ui.onboarding.OnBoardingActivity"

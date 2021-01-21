@@ -5,10 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
+import com.lee.group.beatthelife.base.helper.ViewInterface
+import com.lee.group.beatthelife.base.viewmodel.BaseViewModel
 
-abstract class BaseBindingFragment<T : ViewBinding, V : ViewModel> : Fragment() {
+abstract class BaseBindingFragment<T : ViewBinding, V : BaseViewModel> : Fragment(), ViewInterface {
+
+    protected abstract val viewModel: V
 
     protected val binding: T get() = _binding!!
 
@@ -20,6 +23,8 @@ abstract class BaseBindingFragment<T : ViewBinding, V : ViewModel> : Fragment() 
         savedInstanceState: Bundle?
     ): View? {
         inflateBinding(inflater, container)
+        setupUI()
+        setupViewModel()
         return binding.root
     }
 
