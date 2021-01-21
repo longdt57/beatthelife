@@ -1,10 +1,8 @@
 package com.lee.group.beatthelife.data
 
-import io.reactivex.Single
+import kotlinx.coroutines.flow.Flow
 
 interface IBeoURepository {
 
-    fun signIn()
-
-    fun signOut(): Single<Boolean>
+    suspend fun signOut(): Flow<Boolean>
 }

@@ -89,8 +89,5 @@ dependencies {
     addNavigation()
     addTimber()
 
-    // Rx
-    addReactiveX()
-
     implementation(project(":core"))
 }

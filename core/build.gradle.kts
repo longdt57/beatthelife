@@ -38,7 +38,6 @@ dependencies {
     addHilt()
     addAppCompat()
     addLifeCycle()
-    addReactiveX()
     addFireBase()
     addTimber()
 }

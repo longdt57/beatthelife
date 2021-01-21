@@ -32,12 +32,6 @@ fun DependencyHandler.addTimber() {
     leeImplementation("com.jakewharton.timber:timber:4.7.1")
 }
 
-fun DependencyHandler.addReactiveX() {
-    leeImplementation("io.reactivex.rxjava2:rxjava:2.2.19")
-    leeImplementation("io.reactivex.rxjava2:rxandroid:2.1.1")
-    leeImplementation("io.reactivex.rxjava2:rxkotlin:2.1.0")
-}
-
 fun DependencyHandler.addConstraintLayout() {
     leeImplementation(AppDependencies.constraintLayout)
 }

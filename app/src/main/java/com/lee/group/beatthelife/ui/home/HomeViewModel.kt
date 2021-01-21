@@ -3,11 +3,12 @@ package com.lee.group.beatthelife.ui.home
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.lee.group.beatthelife.data.IBeoURepository
-import io.reactivex.android.schedulers.AndroidSchedulers
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import lee.group.core.base.viewmodel.BaseViewModel
 import lee.group.core.base.viewmodel.SingleLiveData
-import timber.log.Timber
 
 class HomeViewModel @ViewModelInject constructor(
     private val beoURepository: IBeoURepository
@@ -16,17 +17,12 @@ class HomeViewModel @ViewModelInject constructor(
     val signOutEvent: MutableLiveData<Boolean> = SingleLiveData()
 
     fun signOut() {
-        beoURepository.signOut()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                {
-                    signOutEvent.value = true
-                },
-                {
-                    Timber.e(it)
-                }
-            )
-            .add(this)
+        viewModelScope.launch {
+            beoURepository.signOut().collect {
+                signOutEvent.value = it
+            }
+            val t = 1
+        }
     }
 
     private val _text = SingleLiveData<String>().apply {
