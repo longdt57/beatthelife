@@ -24,6 +24,7 @@ object Versions {
 object AppDependencies {
 
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
+    const val kotlinCore = "androidx.core:core-ktx:1.3.2"
     const val constraintLayout =
         "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
 
@@ -40,4 +41,8 @@ object AppDependencies {
 
     // App Start up
     const val appStartUp = "androidx.startup:startup-runtime:1.0.0"
+
+    const val appCompat = "androidx.appcompat:appcompat:1.2.0"
+
+    const val material = "com.google.android.material:material:1.2.1"
 }

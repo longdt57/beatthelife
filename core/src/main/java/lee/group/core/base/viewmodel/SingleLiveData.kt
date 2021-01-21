@@ -1,4 +1,4 @@
-package com.lee.group.beatthelife.base.viewmodel
+package lee.group.core.base.viewmodel
 
 import androidx.annotation.MainThread
 import androidx.annotation.Nullable

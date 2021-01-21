@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import androidx.work.WorkManager
+import com.lee.group.beatthelife.utils.firebase.AppTracingName.TRACING_INIT_WORKER
+import com.lee.group.beatthelife.utils.firebase.PerformanceTracking.oneMeasureDuration
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 
@@ -13,7 +15,9 @@ class BeatApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        initWorker()
+        oneMeasureDuration(TRACING_INIT_WORKER) {
+            initWorker()
+        }
     }
 
     @Inject

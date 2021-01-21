@@ -1,23 +1,26 @@
-package com.lee.group.beatthelife.base
+package lee.group.core.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
-import com.lee.group.beatthelife.base.helper.ViewInterface
-import com.lee.group.beatthelife.base.viewmodel.BaseViewModel
+import lee.group.core.base.viewmodel.BaseViewModel
 
 abstract class BaseBindingActivity<T : ViewBinding, V : BaseViewModel> :
     AppCompatActivity(),
-    ViewInterface {
+    ViewInterface<T, V> {
 
-    protected abstract val binding: T
-
-    protected abstract val viewModel: V
+    override lateinit var binding: T
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = provideBinding()
         setContentView(binding.root)
         setupUI()
         setupViewModel()
     }
+
+    /**
+     * Do not call this directly
+     */
+    abstract fun provideBinding(): T
 }

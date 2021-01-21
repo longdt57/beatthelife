@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Beo U Family</string>
     <string name="title_home">Home</string>
-    <string name="title_health">Health</string>
-    <string name="title_relation">Relation</string>
+    <string name="title_health">Inbox</string>
+    <string name="title_relation">Account</string>
     <string name="title_career">Career</string>
     <string name="authentication_failed">Sign In failed</string>
     <string name="sign_in">Sign In</string>

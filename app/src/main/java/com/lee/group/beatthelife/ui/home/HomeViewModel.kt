@@ -3,10 +3,10 @@ package com.lee.group.beatthelife.ui.home
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.lee.group.beatthelife.base.viewmodel.BaseViewModel
-import com.lee.group.beatthelife.base.viewmodel.SingleLiveData
 import com.lee.group.beatthelife.data.IBeoURepository
 import io.reactivex.android.schedulers.AndroidSchedulers
+import lee.group.core.base.viewmodel.BaseViewModel
+import lee.group.core.base.viewmodel.SingleLiveData
 import timber.log.Timber
 
 class HomeViewModel @ViewModelInject constructor(

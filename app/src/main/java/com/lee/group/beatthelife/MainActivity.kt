@@ -6,19 +6,41 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.lee.group.beatthelife.base.BaseBindingActivity
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.lee.group.beatthelife.data.UserManager
 import com.lee.group.beatthelife.databinding.ActivityMainBinding
+import com.lee.group.beatthelife.ui.base.BaseAuthenticatedActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : BaseBindingActivity<ActivityMainBinding, MainViewModel>() {
+class MainActivity : BaseAuthenticatedActivity<ActivityMainBinding, MainViewModel>() {
 
-    override val binding: ActivityMainBinding
-    by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    override fun provideBinding(): ActivityMainBinding {
+        return ActivityMainBinding.inflate(layoutInflater)
+    }
 
     override val viewModel: MainViewModel by viewModels()
 
     override fun setupUI() {
+        setupNavigation()
+        setupFirebaseCrashlytic()
+        setupFirebaseAnalytic()
+    }
+
+    override fun setupViewModel() = Unit
+
+    private fun setupFirebaseAnalytic() {
+        val userId = UserManager.getCurrentUserId().orEmpty()
+        FirebaseAnalytics.getInstance(this).setUserId(userId)
+    }
+
+    private fun setupFirebaseCrashlytic() {
+        val userId = UserManager.getCurrentUserId().orEmpty()
+        FirebaseCrashlytics.getInstance().setUserId(userId)
+    }
+
+    private fun setupNavigation() {
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment)
@@ -32,6 +54,4 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding, MainViewModel>() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
-
-    override fun setupViewModel() = Unit
 }

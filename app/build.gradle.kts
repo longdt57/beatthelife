@@ -83,20 +83,14 @@ dependencies {
     addWorker()
     addFireBase()
     addAuthentication()
-
-    implementation("androidx.core:core-ktx:1.3.2")
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("com.google.android.material:material:1.2.1")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.3.2")
-    implementation("androidx.navigation:navigation-ui-ktx:2.3.2")
-
-    implementation("com.google.android.material:material:1.2.0")
-    implementation("com.jakewharton.timber:timber:4.7.1")
+    addAppCompat()
+    addMaterialDesign()
+    addLifeCycle()
+    addNavigation()
+    addTimber()
 
     // Rx
-    implementation("io.reactivex.rxjava2:rxjava:2.2.19")
-    implementation("io.reactivex.rxjava2:rxandroid:2.1.0")
-    implementation("io.reactivex.rxjava2:rxkotlin:2.1.0")
+    addReactiveX()
+
+    implementation(project(":core"))
 }

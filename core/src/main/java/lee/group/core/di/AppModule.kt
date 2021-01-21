@@ -1,4 +1,4 @@
-package com.lee.group.beatthelife.di
+package lee.group.core.di
 
 import android.content.Context
 import dagger.Module

@@ -1,4 +1,4 @@
-package com.lee.group.beatthelife.base.viewmodel
+package lee.group.core.base.viewmodel
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
@@ -8,7 +8,7 @@ abstract class BaseViewModel : ViewModel() {
 
     private var compositeDisposable: CompositeDisposable? = null
 
-    protected fun dispose() {
+    private fun dispose() {
         compositeDisposable?.dispose()
     }
 

@@ -1,49 +1,49 @@
 package com.lee.group.beatthelife.ui.onboarding
 
-import android.app.Activity
-import android.content.Intent
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.crashlytics.FirebaseCrashlytics
-import com.lee.group.beatthelife.MainActivity
+import com.google.firebase.perf.metrics.AddTrace
 import com.lee.group.beatthelife.R
-import com.lee.group.beatthelife.base.BaseBindingActivity
 import com.lee.group.beatthelife.databinding.ActivityOnboardingBinding
-import com.lee.group.beatthelife.ui.ext.getFirebaseUISignInIntent
+import com.lee.group.beatthelife.ui.utils.UITracingName.TRACING_ON_BOARDING_SCREEN
+import com.lee.group.beatthelife.ui.utils.UITracingName.TRACING_ON_BOARDING_SCREEN_SETUP_UI
+import com.lee.group.beatthelife.ui.utils.checkAuthentication
+import com.lee.group.beatthelife.ui.utils.getActivityResultLauncher
+import com.lee.group.beatthelife.ui.utils.getSignInIntent
+import com.lee.group.beatthelife.ui.utils.redirectToMainScreen
 import dagger.hilt.android.AndroidEntryPoint
+import lee.group.core.base.BaseBindingActivity
 
 @AndroidEntryPoint
+@AddTrace(name = TRACING_ON_BOARDING_SCREEN)
 class OnBoardingActivity : BaseBindingActivity<ActivityOnboardingBinding, OnBoardingViewModel>() {
 
-    override val binding: ActivityOnboardingBinding
-    by lazy { ActivityOnboardingBinding.inflate(layoutInflater) }
+    override fun provideBinding(): ActivityOnboardingBinding {
+        return ActivityOnboardingBinding.inflate(layoutInflater)
+    }
 
     override val viewModel: OnBoardingViewModel by viewModels()
 
+    @AddTrace(name = TRACING_ON_BOARDING_SCREEN_SETUP_UI)
     override fun setupUI() {
+        startAuthentication()
         binding.btnSignIn.setOnClickListener {
             openFirebaseUISignIn()
         }
-        startAuthentication()
     }
 
     override fun setupViewModel() = Unit
 
     private fun startAuthentication() {
-        val firebaseAuth = FirebaseAuth.getInstance()
-        val uid = firebaseAuth.currentUser?.uid
-        if (uid != null) {
-            onAuthenticationSuccess(firebaseAuth.currentUser!!)
-        }
+        checkAuthentication(
+            signedInCallback = {
+                onAuthenticationSuccess()
+            }
+        )
     }
 
-    private fun onAuthenticationSuccess(user: FirebaseUser) {
-        FirebaseCrashlytics.getInstance().setUserId(user.uid)
-        startActivity(Intent(this, MainActivity::class.java))
-        finish()
+    private fun onAuthenticationSuccess() {
+        redirectToMainScreen()
     }
 
     private fun onAuthenticationFailed() {
@@ -52,18 +52,15 @@ class OnBoardingActivity : BaseBindingActivity<ActivityOnboardingBinding, OnBoar
     }
 
     private fun openFirebaseUISignIn() {
-        // Create and launch sign-in intent
-        val intent = getFirebaseUISignInIntent()
+        val intent = getSignInIntent()
         loginLauncher.launch(intent)
     }
 
-    private var loginLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                // Successfully signed in
-                onAuthenticationSuccess(FirebaseAuth.getInstance().currentUser!!)
-            } else {
-                onAuthenticationFailed()
-            }
-        }
+    private val loginLauncher = getActivityResultLauncher(
+        onSuccess = {
+            viewModel.logEventSignedIn()
+            onAuthenticationSuccess()
+        },
+        onFailed = { onAuthenticationFailed() }
+    )
 }

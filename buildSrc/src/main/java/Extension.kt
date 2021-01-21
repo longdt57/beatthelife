@@ -7,6 +7,35 @@ fun DependencyHandler.leeImplementation(dependencyNotation: Any): Dependency? {
 
 fun DependencyHandler.addKotlin() {
     leeImplementation(AppDependencies.kotlin)
+    leeImplementation(AppDependencies.kotlinCore)
+}
+
+fun DependencyHandler.addAppCompat() {
+    leeImplementation(AppDependencies.appCompat)
+}
+
+fun DependencyHandler.addMaterialDesign() {
+    leeImplementation(AppDependencies.material)
+}
+
+fun DependencyHandler.addLifeCycle() {
+    leeImplementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
+    leeImplementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
+}
+
+fun DependencyHandler.addNavigation() {
+    leeImplementation("androidx.navigation:navigation-fragment-ktx:2.3.2")
+    leeImplementation("androidx.navigation:navigation-ui-ktx:2.3.2")
+}
+
+fun DependencyHandler.addTimber() {
+    leeImplementation("com.jakewharton.timber:timber:4.7.1")
+}
+
+fun DependencyHandler.addReactiveX() {
+    leeImplementation("io.reactivex.rxjava2:rxjava:2.2.19")
+    leeImplementation("io.reactivex.rxjava2:rxandroid:2.1.1")
+    leeImplementation("io.reactivex.rxjava2:rxkotlin:2.1.0")
 }
 
 fun DependencyHandler.addConstraintLayout() {

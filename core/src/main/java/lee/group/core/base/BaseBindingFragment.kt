@@ -1,4 +1,4 @@
-package com.lee.group.beatthelife.base
+package lee.group.core.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,23 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
-import com.lee.group.beatthelife.base.helper.ViewInterface
-import com.lee.group.beatthelife.base.viewmodel.BaseViewModel
+import lee.group.core.base.viewmodel.BaseViewModel
 
-abstract class BaseBindingFragment<T : ViewBinding, V : BaseViewModel> : Fragment(), ViewInterface {
+abstract class BaseBindingFragment<T : ViewBinding, V : BaseViewModel> :
+    Fragment(),
+    ViewInterface<T, V> {
 
-    protected abstract val viewModel: V
+    override val binding: T get() = _binding!!
 
-    protected val binding: T get() = _binding!!
-
-    protected var _binding: T? = null
+    private var _binding: T? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        inflateBinding(inflater, container)
+        _binding = provideBinding(inflater, container)
         setupUI()
         setupViewModel()
         return binding.root
@@ -33,5 +32,8 @@ abstract class BaseBindingFragment<T : ViewBinding, V : BaseViewModel> : Fragmen
         super.onDestroyView()
     }
 
-    abstract fun inflateBinding(inflater: LayoutInflater, container: ViewGroup?)
+    /**
+     * Do not call this directly
+     */
+    abstract fun provideBinding(inflater: LayoutInflater, container: ViewGroup?): T
 }

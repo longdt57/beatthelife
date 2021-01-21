@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.lee.group.beatthelife.ui.health.HealthFragment"
+        android:name="com.lee.group.beatthelife.ui.inbox.InboxFragment"
         android:label="@string/title_health"
-        tools:layout="@layout/fragment_health" />
+        tools:layout="@layout/fragment_inbox" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.lee.group.beatthelife.ui.relation.RelationFragment"
+        android:name="com.lee.group.beatthelife.ui.account.AccountFragment"
         android:label="@string/title_relation"
-        tools:layout="@layout/fragment_relation" />
+        tools:layout="@layout/fragment_account" />
 </navigation>
