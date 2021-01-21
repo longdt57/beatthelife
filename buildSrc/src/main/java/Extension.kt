@@ -32,6 +32,12 @@ fun DependencyHandler.addTimber() {
     leeImplementation("com.jakewharton.timber:timber:4.7.1")
 }
 
+fun DependencyHandler.addReactiveX() {
+    leeImplementation("io.reactivex.rxjava2:rxjava:2.2.19")
+    leeImplementation("io.reactivex.rxjava2:rxandroid:2.1.1")
+    leeImplementation("io.reactivex.rxjava2:rxkotlin:2.1.0")
+}
+
 fun DependencyHandler.addConstraintLayout() {
     leeImplementation(AppDependencies.constraintLayout)
 }
@@ -59,14 +65,14 @@ fun DependencyHandler.addAppStartUp() {
 
 fun DependencyHandler.addAuthentication() {
     leeImplementation("com.firebaseui:firebase-ui-auth:6.4.0")
-//    leeImplementation("com.facebook.android:facebook-android-sdk:4.x")
-//    leeImplementation("com.twitter.sdk.android:twitter-core:3.x")
 }
 
 fun DependencyHandler.addFireBase() {
     leeImplementation(platform("com.google.firebase:firebase-bom:26.2.0"))
-    leeImplementation("com.google.firebase:firebase-analytics-ktx")
-    leeImplementation("com.google.firebase:firebase-crashlytics-ktx")
-    leeImplementation("com.google.firebase:firebase-auth")
-    leeImplementation("com.google.firebase:firebase-perf")
+}
+
+fun DependencyHandler.addsRetrofit(configurationName: String = "api") {
+    add(configurationName, Network.retrofit)
+    add(configurationName, Network.retrofit_gson)
+    add(configurationName, Network.retrofit_adapter_rxjava2)
 }

@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("kotlin-kapt")
+    id("kotlin-android-extensions")
     id("lee.group.beat")
 }
 
@@ -24,19 +25,26 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    kotlinOptions {
-        jvmTarget = "1.8"
+
+    androidExtensions {
+        isExperimental = true
     }
 
-    buildFeatures {
-        viewBinding = true
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 
 dependencies {
     addKotlin()
     addHilt()
-    addAppCompat()
+    addReactiveX()
+    addsRetrofit()
     addLifeCycle()
     addTimber()
+
+    addFireBase()
+    implementation(AppDependencies.firebaseFireStore)
+    implementation(AppDependencies.firebaseAuth)
+
 }

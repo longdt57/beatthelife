@@ -19,10 +19,12 @@ class BeoURepositoryImpl @Inject constructor(
             .signOut(context)
             .addOnCompleteListener {
                 when {
-                    it.exception != null -> offer(false)
-                    else -> offer(true)
+                    it.exception != null -> close(it.exception!!)
+                    else -> {
+                        offer(true)
+                        close()
+                    }
                 }
-                close()
             }
         awaitClose {}
     }

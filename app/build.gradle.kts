@@ -81,7 +81,6 @@ dependencies {
     addConstraintLayout()
     addHilt()
     addWorker()
-    addFireBase()
     addAuthentication()
     addAppCompat()
     addMaterialDesign()
@@ -90,4 +89,11 @@ dependencies {
     addTimber()
 
     implementation(project(":core"))
+    implementation(project(":chat-sdk"))
+
+    addFireBase()
+    implementation(AppDependencies.firebaseAuth)
+    implementation(AppDependencies.firebasePerf)
+    implementation(AppDependencies.firebaseCrashytics)
+    implementation(AppDependencies.firebaseAnalytics)
 }
