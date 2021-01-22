@@ -15,7 +15,6 @@ import com.lee.group.beatthelife.databinding.ActivityMainBinding
 import com.lee.group.beatthelife.ui.base.BaseAuthenticatedActivity
 import com.lee.group.beatthelife.ui.utils.setupTrackerUserId
 import dagger.hilt.android.AndroidEntryPoint
-import lee.group.core.base.viewmodel.SimpleViewModel
 
 @AndroidEntryPoint
 class MainActivity : BaseAuthenticatedActivity<ActivityMainBinding, MainViewModel>() {

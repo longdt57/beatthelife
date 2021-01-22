@@ -19,6 +19,6 @@ object EventParams {
 
     object Group {
         const val DEFAULT = "general"
-        const val GROUP_AUTH= "group_auth"
+        const val GROUP_AUTH = "group_auth"
     }
 }

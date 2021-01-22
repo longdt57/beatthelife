@@ -5,7 +5,6 @@ import androidx.core.view.isVisible
 import com.google.firebase.perf.metrics.AddTrace
 import com.lee.group.beatthelife.R
 import com.lee.group.beatthelife.databinding.ActivityOnboardingBinding
-import com.lee.group.beatthelife.ui.utils.UITracingName.TRACING_ON_BOARDING_SCREEN
 import com.lee.group.beatthelife.ui.utils.UITracingName.TRACING_ON_BOARDING_SCREEN_SETUP_UI
 import com.lee.group.beatthelife.ui.utils.checkAuthentication
 import com.lee.group.beatthelife.ui.utils.getActivityResultLauncher

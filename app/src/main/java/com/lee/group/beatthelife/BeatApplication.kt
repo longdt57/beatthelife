@@ -5,7 +5,6 @@
 
 package com.lee.group.beatthelife
 
-import android.app.Application
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import androidx.work.WorkManager
@@ -13,11 +12,12 @@ import com.lee.group.beatthelife.utils.firebase.AppTracingName.TRACING_INIT_WORK
 import com.lee.group.beatthelife.utils.firebase.PerformanceTracking.oneMeasureDuration
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
+import lee.group.core.base.BaseApplication
 import lee.group.tracking.TrackerSDK
 import lee.group.tracking.tracker.FirebaseAnalysisTracker
 
 @HiltAndroidApp
-class BeatApplication : Application() {
+class BeatApplication : BaseApplication() {
 
     override fun onCreate() {
         super.onCreate()
