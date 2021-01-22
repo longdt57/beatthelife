@@ -32,6 +32,7 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding, HomeViewModel>() {
             {
                 if (it) {
                     signOutSuccess()
+                    viewModel.logEventLogOut()
                 }
             }
         )

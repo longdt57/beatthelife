@@ -5,4 +5,6 @@ interface IEventRepository {
     fun logEventLogin()
 
     fun trackDeviceType()
+
+    fun logEventLogOut()
 }

@@ -8,4 +8,7 @@ object EventParam {
     const val DEVICE_ROOT = "root"
     const val DEVICE_NONE = "none"
     const val DEVICE_EMULATOR = "emulator"
+
+    const val LOGIN = "login"
+    const val LOGOUT = "logout"
 }

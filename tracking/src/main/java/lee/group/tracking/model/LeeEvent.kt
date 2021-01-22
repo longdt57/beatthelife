@@ -4,6 +4,8 @@ import android.os.Bundle
 import lee.group.tracking.tracker.utils.StandardTrackerType.APP_FLY
 import lee.group.tracking.tracker.utils.StandardTrackerType.FACEBOOK
 import lee.group.tracking.tracker.utils.StandardTrackerType.FIREBASE
+import lee.group.tracking.utils.EventParams
+import lee.group.tracking.utils.EventParams.Group.GROUP_AUTH
 
 open class LeeEvent constructor(
     val name: String,
@@ -30,6 +32,20 @@ open class LeeEvent constructor(
 
         fun addParam(key: String, value: String): Builder {
             params.putString(key, value)
+            return this
+        }
+
+        fun addEventGroup(
+            eventGroup: String,
+            domainName: String = EventParams.Domain.DEFAULT
+        ): Builder {
+            params.putString(EventParams.Common.EVENT_GROUP, eventGroup)
+            params.putString(EventParams.Common.DOMAIN, domainName)
+            return this
+        }
+
+        fun addEventGroupAuth(): Builder {
+            addEventGroup(GROUP_AUTH)
             return this
         }
 

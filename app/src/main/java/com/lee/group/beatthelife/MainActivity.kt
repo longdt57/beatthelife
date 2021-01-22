@@ -13,13 +13,13 @@ import dagger.hilt.android.AndroidEntryPoint
 import lee.group.core.base.viewmodel.SimpleViewModel
 
 @AndroidEntryPoint
-class MainActivity : BaseAuthenticatedActivity<ActivityMainBinding, SimpleViewModel>() {
+class MainActivity : BaseAuthenticatedActivity<ActivityMainBinding, MainViewModel>() {
 
     override fun provideBinding(): ActivityMainBinding {
         return ActivityMainBinding.inflate(layoutInflater)
     }
 
-    override val viewModel: SimpleViewModel by viewModels()
+    override val viewModel: MainViewModel by viewModels()
 
     override fun setupUI() {
         setupNavigation()

@@ -16,7 +16,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import lee.group.core.base.view.binding.BaseBindingActivity
 
 @AndroidEntryPoint
-@AddTrace(name = TRACING_ON_BOARDING_SCREEN)
 class OnBoardingActivity : BaseBindingActivity<ActivityOnboardingBinding, OnBoardingViewModel>() {
 
     override fun provideBinding(): ActivityOnboardingBinding {

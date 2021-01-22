@@ -39,5 +39,6 @@ dependencies {
     addAppCompat()
     addLifeCycle()
     addNavigation()
+    addReactiveX()
     addTimber()
 }
