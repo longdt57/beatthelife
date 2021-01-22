@@ -1,16 +1,16 @@
-package lee.group.core.base
+package lee.group.core.base.view.binding
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import lee.group.core.base.view.BaseFragment
 import lee.group.core.base.viewmodel.BaseViewModel
 
 abstract class BaseBindingFragment<T : ViewBinding, V : BaseViewModel> :
-    Fragment(),
-    ViewInterface<T, V> {
+    BaseFragment<V>(),
+    BindingInterface<T> {
 
     override val binding: T get() = _binding!!
 
@@ -23,7 +23,7 @@ abstract class BaseBindingFragment<T : ViewBinding, V : BaseViewModel> :
     ): View? {
         _binding = provideBinding(inflater, container)
         setupUI()
-        setupViewModel()
+        observeViewModel()
         return binding.root
     }
 

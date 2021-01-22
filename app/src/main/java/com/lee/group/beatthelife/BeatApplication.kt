@@ -8,6 +8,8 @@ import com.lee.group.beatthelife.utils.firebase.AppTracingName.TRACING_INIT_WORK
 import com.lee.group.beatthelife.utils.firebase.PerformanceTracking.oneMeasureDuration
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
+import lee.group.tracking.TrackerSDK
+import lee.group.tracking.tracker.FirebaseAnalysisTracker
 
 @HiltAndroidApp
 class BeatApplication : Application() {
@@ -28,5 +30,12 @@ class BeatApplication : Application() {
             .setWorkerFactory(hiltWorkerFactory)
             .build()
         WorkManager.initialize(this, configuration)
+    }
+
+    @Inject
+    lateinit var firebaseTracker: FirebaseAnalysisTracker
+
+    private fun initTracker() {
+        TrackerSDK.addTracker(firebaseTracker)
     }
 }

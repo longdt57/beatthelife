@@ -1,13 +1,12 @@
-package lee.group.core.base
+package lee.group.core.base.view.binding
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
+import lee.group.core.base.view.BaseActivity
 import lee.group.core.base.viewmodel.BaseViewModel
 
 abstract class BaseBindingActivity<T : ViewBinding, V : BaseViewModel> :
-    AppCompatActivity(),
-    ViewInterface<T, V> {
+    BaseActivity<V>(), BindingInterface<T> {
 
     override lateinit var binding: T
 
@@ -16,7 +15,7 @@ abstract class BaseBindingActivity<T : ViewBinding, V : BaseViewModel> :
         binding = provideBinding()
         setContentView(binding.root)
         setupUI()
-        setupViewModel()
+        observeViewModel()
     }
 
     /**

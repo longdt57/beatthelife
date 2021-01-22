@@ -81,7 +81,7 @@ dependencies {
     addConstraintLayout()
     addHilt()
     addWorker()
-    addAuthentication()
+    addAuthenticationUI()
     addAppCompat()
     addMaterialDesign()
     addLifeCycle()
@@ -90,6 +90,7 @@ dependencies {
 
     implementation(project(":core"))
     implementation(project(":chat-sdk"))
+    implementation(project(":tracking"))
 
     addFireBase()
     implementation(AppDependencies.firebaseAuth)

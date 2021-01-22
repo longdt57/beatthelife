@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.lee.group.beatthelife.databinding.FragmentInboxBinding
 import dagger.hilt.android.AndroidEntryPoint
-import lee.group.core.base.BaseBindingFragment
+import lee.group.core.base.view.binding.BaseBindingFragment
 
 @AndroidEntryPoint
 class InboxFragment : BaseBindingFragment<FragmentInboxBinding, InboxViewModel>() {
@@ -22,7 +22,7 @@ class InboxFragment : BaseBindingFragment<FragmentInboxBinding, InboxViewModel>(
     override fun setupUI() {
     }
 
-    override fun setupViewModel() {
+    override fun observeViewModel() {
         viewModel.text.observe(
             viewLifecycleOwner,
             {

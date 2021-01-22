@@ -13,4 +13,8 @@ class OnBoardingViewModel @Inject constructor(
     fun logEventSignedIn() {
         eventRepo.logEventLogin()
     }
+
+    fun logDeviceType() {
+        eventRepo.trackDeviceType()
+    }
 }

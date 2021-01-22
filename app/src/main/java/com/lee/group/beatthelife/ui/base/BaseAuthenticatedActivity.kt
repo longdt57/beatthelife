@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.viewbinding.ViewBinding
 import com.lee.group.beatthelife.ui.utils.checkAuthentication
 import com.lee.group.beatthelife.ui.utils.redirectToSignInScreen
-import lee.group.core.base.BaseBindingActivity
+import lee.group.core.base.view.binding.BaseBindingActivity
 import lee.group.core.base.viewmodel.BaseViewModel
 
 abstract class BaseAuthenticatedActivity<T : ViewBinding, V : BaseViewModel> :

@@ -6,10 +6,12 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.firebase.ui.auth.AuthUI
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.lee.group.beatthelife.MainActivity
 import com.lee.group.beatthelife.R
 import com.lee.group.beatthelife.data.UserManager
 import com.lee.group.beatthelife.ui.onboarding.OnBoardingActivity
+import lee.group.tracking.TrackerSDK
 
 internal fun getSignInIntent(): Intent {
     // Choose authentication providers
@@ -59,4 +61,10 @@ internal fun checkAuthentication(
     } else {
         unSignedInCallback.invoke()
     }
+}
+
+internal fun setupTrackerUserId() {
+    val userId = UserManager.getCurrentUserId().orEmpty()
+    TrackerSDK.setUserId(userId)
+    FirebaseCrashlytics.getInstance().setUserId(userId)
 }

@@ -6,39 +6,27 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.analytics.FirebaseAnalytics
-import com.google.firebase.crashlytics.FirebaseCrashlytics
-import com.lee.group.beatthelife.data.UserManager
 import com.lee.group.beatthelife.databinding.ActivityMainBinding
 import com.lee.group.beatthelife.ui.base.BaseAuthenticatedActivity
+import com.lee.group.beatthelife.ui.utils.setupTrackerUserId
 import dagger.hilt.android.AndroidEntryPoint
+import lee.group.core.base.viewmodel.SimpleViewModel
 
 @AndroidEntryPoint
-class MainActivity : BaseAuthenticatedActivity<ActivityMainBinding, MainViewModel>() {
+class MainActivity : BaseAuthenticatedActivity<ActivityMainBinding, SimpleViewModel>() {
 
     override fun provideBinding(): ActivityMainBinding {
         return ActivityMainBinding.inflate(layoutInflater)
     }
 
-    override val viewModel: MainViewModel by viewModels()
+    override val viewModel: SimpleViewModel by viewModels()
 
     override fun setupUI() {
         setupNavigation()
-        setupFirebaseCrashlytic()
-        setupFirebaseAnalytic()
+        setupTrackerUserId()
     }
 
-    override fun setupViewModel() = Unit
-
-    private fun setupFirebaseAnalytic() {
-        val userId = UserManager.getCurrentUserId().orEmpty()
-        FirebaseAnalytics.getInstance(this).setUserId(userId)
-    }
-
-    private fun setupFirebaseCrashlytic() {
-        val userId = UserManager.getCurrentUserId().orEmpty()
-        FirebaseCrashlytics.getInstance().setUserId(userId)
-    }
+    override fun observeViewModel() = Unit
 
     private fun setupNavigation() {
         val navView: BottomNavigationView = binding.navView

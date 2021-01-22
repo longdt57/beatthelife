@@ -2,23 +2,31 @@ package com.lee.group.beatthelife.data.impl
 
 import android.os.Bundle
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.google.firebase.analytics.ktx.analytics
-import com.google.firebase.ktx.Firebase
 import com.lee.group.beatthelife.data.IEventRepository
+import com.lee.group.beatthelife.data.utils.EventParam
 import com.lee.group.beatthelife.data.utils.EventParam.DEVICE_NAME
 import javax.inject.Inject
-import lee.group.core.ext.deviceName
+import lee.group.core.ext.DeviceUtil
+import lee.group.tracking.TrackerSDK
+import lee.group.tracking.model.LeeEvent
 
 class EventRepositoryImpl @Inject constructor() : IEventRepository {
 
-    private val firebaseAnalytics get() = Firebase.analytics
-
     override fun logEventLogin() {
-        firebaseAnalytics.logEvent(
+        val event = LeeEvent(
             FirebaseAnalytics.Event.LOGIN,
             Bundle().apply {
-                putString(DEVICE_NAME, deviceName)
+                putString(DEVICE_NAME, DeviceUtil.deviceName)
             }
         )
+        TrackerSDK.logEvent(event)
+    }
+
+    override fun trackDeviceType() {
+        val deviceStatus: String = when {
+            DeviceUtil.isEmulator -> EventParam.DEVICE_EMULATOR
+            else -> EventParam.DEVICE_NONE
+        }
+        TrackerSDK.setUserProperty(EventParam.DEVICE_STATUS, deviceStatus)
     }
 }

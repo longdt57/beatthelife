@@ -11,8 +11,9 @@ import com.lee.group.beatthelife.ui.utils.checkAuthentication
 import com.lee.group.beatthelife.ui.utils.getActivityResultLauncher
 import com.lee.group.beatthelife.ui.utils.getSignInIntent
 import com.lee.group.beatthelife.ui.utils.redirectToMainScreen
+import com.lee.group.beatthelife.ui.utils.setupTrackerUserId
 import dagger.hilt.android.AndroidEntryPoint
-import lee.group.core.base.BaseBindingActivity
+import lee.group.core.base.view.binding.BaseBindingActivity
 
 @AndroidEntryPoint
 @AddTrace(name = TRACING_ON_BOARDING_SCREEN)
@@ -26,13 +27,14 @@ class OnBoardingActivity : BaseBindingActivity<ActivityOnboardingBinding, OnBoar
 
     @AddTrace(name = TRACING_ON_BOARDING_SCREEN_SETUP_UI)
     override fun setupUI() {
+        viewModel.logDeviceType()
         startAuthentication()
         binding.btnSignIn.setOnClickListener {
             openFirebaseUISignIn()
         }
     }
 
-    override fun setupViewModel() = Unit
+    override fun observeViewModel() = Unit
 
     private fun startAuthentication() {
         checkAuthentication(
@@ -58,6 +60,7 @@ class OnBoardingActivity : BaseBindingActivity<ActivityOnboardingBinding, OnBoar
 
     private val loginLauncher = getActivityResultLauncher(
         onSuccess = {
+            setupTrackerUserId()
             viewModel.logEventSignedIn()
             onAuthenticationSuccess()
         },

@@ -38,5 +38,6 @@ dependencies {
     addHilt()
     addAppCompat()
     addLifeCycle()
+    addNavigation()
     addTimber()
 }

@@ -6,7 +6,7 @@ import androidx.fragment.app.viewModels
 import com.lee.group.beatthelife.databinding.FragmentHomeBinding
 import com.lee.group.beatthelife.ui.utils.redirectToSignInScreen
 import dagger.hilt.android.AndroidEntryPoint
-import lee.group.core.base.BaseBindingFragment
+import lee.group.core.base.view.binding.BaseBindingFragment
 
 @AndroidEntryPoint
 class HomeFragment : BaseBindingFragment<FragmentHomeBinding, HomeViewModel>() {
@@ -19,7 +19,7 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding, HomeViewModel>() {
         }
     }
 
-    override fun setupViewModel() {
+    override fun observeViewModel() {
         viewModel.text.observe(
             viewLifecycleOwner,
             {

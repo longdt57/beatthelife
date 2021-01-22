@@ -63,7 +63,7 @@ fun DependencyHandler.addAppStartUp() {
     leeImplementation(AppDependencies.appStartUp)
 }
 
-fun DependencyHandler.addAuthentication() {
+fun DependencyHandler.addAuthenticationUI() {
     leeImplementation("com.firebaseui:firebase-ui-auth:6.4.0")
 }
 

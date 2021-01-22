@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.lee.group.beatthelife.databinding.FragmentAccountBinding
 import dagger.hilt.android.AndroidEntryPoint
-import lee.group.core.base.BaseBindingFragment
+import lee.group.core.base.view.binding.BaseBindingFragment
 
 @AndroidEntryPoint
 class AccountFragment : BaseBindingFragment<FragmentAccountBinding, AccountViewModel>() {
@@ -21,5 +21,5 @@ class AccountFragment : BaseBindingFragment<FragmentAccountBinding, AccountViewM
 
     override fun setupUI() = Unit
 
-    override fun setupViewModel() = Unit
+    override fun observeViewModel() = Unit
 }
