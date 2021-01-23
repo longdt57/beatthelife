@@ -44,6 +44,7 @@ object AppDependencies {
 
     // AppCompat
     const val appCompat = "androidx.appcompat:appcompat:1.2.0"
+    const val swiperefreshlayout = "\"androidx.swiperefreshlayout:swiperefreshlayout:1.1.0\""
 
     // Material Design
     const val material = "com.google.android.material:material:1.2.1"

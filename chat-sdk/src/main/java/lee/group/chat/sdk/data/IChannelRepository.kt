@@ -1,15 +1,15 @@
 package lee.group.chat.sdk.data
 
 import io.reactivex.Completable
-import io.reactivex.Observable
 import io.reactivex.Single
+import kotlinx.coroutines.flow.Flow
 import lee.group.chat.sdk.data.model.channel.ChatChannel
 
 interface IChannelRepository {
 
     fun getAllChannels(): Single<List<ChatChannel>>
 
-    fun observeAllChannels(): Observable<List<ChatChannel>>
+    suspend fun observeAllChannels(): Flow<List<ChatChannel>>
 
     fun fetchNextChannels()
 

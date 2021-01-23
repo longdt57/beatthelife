@@ -10,7 +10,6 @@ import lee.group.chat.sdk.data.firestore.utils.ChatFirebase
 import lee.group.chat.sdk.data.model.ChatUser
 import lee.group.chat.sdk.data.model.channel.ChatChannel
 import lee.group.chat.sdk.data.utils.toChannel
-import lee.group.chat.sdk.data.utils.toChatUser
 
 internal class UserRepositoryImpl constructor(
     private val chatUserFireStore: IFireStoreChatUserService,

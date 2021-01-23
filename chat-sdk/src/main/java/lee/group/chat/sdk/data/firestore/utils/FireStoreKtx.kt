@@ -6,6 +6,8 @@ import com.google.firebase.firestore.QuerySnapshot
 import io.reactivex.CompletableEmitter
 import io.reactivex.ObservableEmitter
 import io.reactivex.SingleEmitter
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.channels.ProducerScope
 import lee.group.chat.sdk.data.firestore.error.FireStoreDataNotExistException
 
 /*** RX Extension ***/
@@ -30,6 +32,19 @@ internal inline fun <reified T> ObservableEmitter<T>.onRxObservableListener(
         data != null -> onNext(data)
         exception != null -> onError(exception)
         else -> onError(FireStoreDataNotExistException())
+    }
+}
+
+@ExperimentalCoroutinesApi
+internal inline fun <reified T> ProducerScope<T>.onRxObservableListener(
+    exception: Exception?,
+    data: T?
+) {
+    when {
+        isClosedForSend -> return
+        exception != null -> close(exception)
+        data != null -> offer(data)
+        else -> close(FireStoreDataNotExistException())
     }
 }
 
@@ -76,6 +91,20 @@ internal inline fun <reified T> ObservableEmitter<List<T>>.onFireStoreSnapshotLi
     }
 }
 
+@ExperimentalCoroutinesApi
+internal inline fun <reified T> ProducerScope<List<T>>.onFireStoreSnapshotListener(
+    exception: Exception?,
+    task: QuerySnapshot?
+) {
+    try {
+        val data = task?.toObjects(T::class.java)
+        onRxObservableListener(exception, data)
+    } catch (ex: Exception) {
+        close(ex)
+    }
+}
+
+@ExperimentalCoroutinesApi
 internal inline fun <reified T> ObservableEmitter<T>.onFireStoreSnapshotListener(
     exception: Exception?,
     task: DocumentSnapshot?
@@ -85,6 +114,19 @@ internal inline fun <reified T> ObservableEmitter<T>.onFireStoreSnapshotListener
         onRxObservableListener(exception, data)
     } catch (ex: Exception) {
         onError(ex)
+    }
+}
+
+@ExperimentalCoroutinesApi
+internal inline fun <reified T> ProducerScope<T>.onFireStoreSnapshotListener(
+    exception: Exception?,
+    task: DocumentSnapshot?
+) {
+    try {
+        val data = task?.toObject(T::class.java)
+        onRxObservableListener(exception, data)
+    } catch (ex: Exception) {
+        close(ex)
     }
 }
 

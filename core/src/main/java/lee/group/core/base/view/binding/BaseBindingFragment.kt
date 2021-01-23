@@ -22,8 +22,6 @@ abstract class BaseBindingFragment<T : ViewBinding, V : BaseViewModel> :
         savedInstanceState: Bundle?
     ): View? {
         _binding = provideBinding(inflater, container)
-        setupUI()
-        observeViewModel()
         return binding.root
     }
 

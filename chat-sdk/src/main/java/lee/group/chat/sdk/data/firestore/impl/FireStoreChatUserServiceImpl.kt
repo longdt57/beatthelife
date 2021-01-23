@@ -1,8 +1,10 @@
 package lee.group.chat.sdk.data.firestore.impl
 
 import com.google.firebase.firestore.ListenerRegistration
-import io.reactivex.Observable
 import io.reactivex.Single
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
 import lee.group.chat.sdk.data.firestore.IFireStoreChatUserService
 import lee.group.chat.sdk.data.firestore.model.FireStoreUser
 import lee.group.chat.sdk.data.firestore.utils.ChatFirebase
@@ -33,15 +35,14 @@ internal class FireStoreChatUserServiceImpl : IFireStoreChatUserService {
         }
     }
 
-    override fun observeUser(userId: String): Observable<FireStoreUser> {
+    @ExperimentalCoroutinesApi
+    override suspend fun observeUser(userId: String): Flow<FireStoreUser> = callbackFlow {
         userListener?.remove()
-        return Observable.create { emitter ->
-            userListener = FireStoreChatRef.getUserDocument(userId)
-                .addSnapshotListener { value, error ->
-                    updateCurrentUser(value?.toObject(FireStoreUser::class.java))
-                    emitter.onFireStoreSnapshotListener(error, value)
-                }
-        }
+        userListener = FireStoreChatRef.getUserDocument(userId)
+            .addSnapshotListener { value, error ->
+                updateCurrentUser(value?.toObject(FireStoreUser::class.java))
+                onFireStoreSnapshotListener(error, value)
+            }
     }
 
     override fun removeUserObserver() {

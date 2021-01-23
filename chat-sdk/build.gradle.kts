@@ -41,12 +41,16 @@ android {
 
 dependencies {
     addKotlin()
+    addAppCompat()
+    addMaterialDesign()
+    addNavigation()
+    addConstraintLayout()
+
     addHilt()
     addReactiveX()
     addsRetrofit()
-    addMaterialDesign()
-    addConstraintLayout()
     addLifeCycle()
+    implementation(AppDependencies.glide)
     addTimber()
 
     addFireBase()
@@ -54,6 +58,5 @@ dependencies {
     implementation(AppDependencies.firebaseAuth)
 
     implementation(project(":core"))
-
-    implementation(AppDependencies.glide)
+    implementation(AppDependencies.swiperefreshlayout)
 }

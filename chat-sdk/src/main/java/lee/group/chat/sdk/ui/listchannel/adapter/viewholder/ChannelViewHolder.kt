@@ -11,11 +11,11 @@ import androidx.core.view.isVisible
 import lee.group.chat.sdk.R
 import lee.group.chat.sdk.data.model.channel.ChatChannel
 import lee.group.chat.sdk.data.utils.orFalse
-import lee.group.chat.sdk.databinding.ItemChannelBinding
+import lee.group.chat.sdk.databinding.ListChannelItemBinding
 import lee.group.chat.sdk.ui.utils.MessengerTimeUtils
 
-class ChannelViewHolder(binding: ItemChannelBinding) :
-    BaseChannelViewHolder<ChatChannel, ItemChannelBinding>(binding) {
+class ChannelViewHolder(binding: ListChannelItemBinding) :
+    BaseChannelViewHolder<ChatChannel, ListChannelItemBinding>(binding) {
 
     /**
      * Update Title View

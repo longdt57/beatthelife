@@ -6,5 +6,5 @@ interface ViewInterface<V> {
 
     fun setupUI()
 
-    fun observeViewModel()
+    fun setupViewModel()
 }

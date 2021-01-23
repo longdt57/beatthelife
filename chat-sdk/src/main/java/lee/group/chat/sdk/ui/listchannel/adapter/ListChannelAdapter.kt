@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import lee.group.chat.sdk.data.model.channel.BaseChannel
 import lee.group.chat.sdk.data.model.channel.ChatChannel
-import lee.group.chat.sdk.databinding.ItemChannelBinding
+import lee.group.chat.sdk.databinding.ListChannelItemBinding
 import lee.group.chat.sdk.ui.listchannel.adapter.viewholder.ChannelViewHolder
 
 class ListChannelAdapter(
@@ -26,7 +26,7 @@ class ListChannelAdapter(
 
         return when (viewType) {
             VIEW_TYPE_CHANNEL -> ChannelViewHolder(
-                ItemChannelBinding.inflate(
+                ListChannelItemBinding.inflate(
                     inflater,
                     parent,
                     false

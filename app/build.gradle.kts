@@ -79,13 +79,14 @@ dependencies {
 
     addKotlin()
     addConstraintLayout()
+    addAppCompat()
+    addMaterialDesign()
+    addNavigation()
+
     addHilt()
     addWorker()
     addAuthenticationUI()
-    addAppCompat()
-    addMaterialDesign()
     addLifeCycle()
-    addNavigation()
     addTimber()
 
     implementation(project(":core"))

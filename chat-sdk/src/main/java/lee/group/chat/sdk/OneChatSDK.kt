@@ -3,6 +3,7 @@ package lee.group.chat.sdk
 import android.content.Context
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.catch
 import lee.group.chat.sdk.config.ChatInitializerManager
 import lee.group.chat.sdk.config.OneChatSDKConfig
 import lee.group.chat.sdk.data.firestore.utils.ChatFirebase
@@ -46,5 +47,10 @@ object OneChatSDK {
             .addOnFailureListener { error ->
                 close(error)
             }
+    }
+
+    fun xxx() {
+        connect("abc").catch {
+        }
     }
 }

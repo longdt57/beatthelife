@@ -15,7 +15,7 @@ abstract class BaseBindingActivity<T : ViewBinding, V : BaseViewModel> :
         binding = provideBinding()
         setContentView(binding.root)
         setupUI()
-        observeViewModel()
+        setupViewModel()
     }
 
     /**

@@ -19,7 +19,7 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding, HomeViewModel>() {
         }
     }
 
-    override fun observeViewModel() {
+    override fun setupViewModel() {
         viewModel.text.observe(
             viewLifecycleOwner,
             {
