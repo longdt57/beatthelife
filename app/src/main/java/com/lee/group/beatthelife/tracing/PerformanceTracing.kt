@@ -1,8 +1,14 @@
-package com.lee.group.beatthelife.utils.firebase
+/*
+ * Created by do thanh long on 1/23/21 9:56 AM.
+ * Copyright (c) 2021. All rights reserved.
+ * Last modified 1/23/21 9:56 AM
+ */
+
+package com.lee.group.beatthelife.tracing
 
 import com.google.firebase.perf.FirebasePerformance
 
-object PerformanceTracking {
+object PerformanceTracing {
 
     fun oneMeasureDuration(message: String = "", code: () -> Unit) {
         val traceName = message.takeIf { it.isNotBlank() } ?: code.toString()

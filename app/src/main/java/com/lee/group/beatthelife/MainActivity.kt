@@ -6,6 +6,7 @@
 package com.lee.group.beatthelife
 
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -20,6 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : BaseAuthenticatedActivity<ActivityMainBinding, MainViewModel>() {
 
     override fun provideBinding(): ActivityMainBinding {
+        lifecycleScope
         return ActivityMainBinding.inflate(layoutInflater)
     }
 
