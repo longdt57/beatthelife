@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by do thanh long on 1/23/21 12:27 PM.
+  ~ Copyright (c) 2021. All rights reserved.
+  ~ Last modified 1/23/21 12:27 PM
+  -->
+
+<resources>
+    <style name="DS2" />
+    <style name="DS2.Light" parent="DS2" />
+    <style name="DS2.Dark" parent="DS2" />
+
+    <!-- ************** 48 Money Unit ************** -->
+    <style name="DS2.Dark.48MoneyUnit" parent="DS2.Dark">
+        <item name="android:textSize">48dp</item>
+        <item name="fontFamily">@font/app_regular</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/white3</item>
+    </style>
+
+    <style name="DS2.Light.48MoneyUnit" parent="DS2.Light">
+        <item name="android:textSize">48dp</item>
+        <item name="fontFamily">@font/app_regular</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/ink3</item>
+    </style>
+
+    <!-- ************** 48 Number ************** -->
+    <style name="DS2.Dark.48Number" parent="DS2.Dark">
+        <item name="android:textSize">48dp</item>
+        <item name="fontFamily">@font/app_regular</item>
+        <item name="android:lineSpacingExtra">8dp</item>
+        <item name="android:textColor">@color/white1</item>
+    </style>
+
+    <style name="DS2.Dark.48Number.3" parent="DS2.Dark.48Number">
+        <item name="android:textColor">@color/white3</item>
+    </style>
+
+    <style name="DS2.Light.48Number" parent="DS2.Light">
+        <item name="android:textSize">48dp</item>
+        <item name="fontFamily">@font/app_regular</item>
+        <item name="android:lineSpacingExtra">8dp</item>
+        <item name="android:textColor">@color/ink1</item>
+    </style>
+
+    <style name="DS2.Light.48Number.3" parent="DS2.Light.48Number">
+        <item name="android:textColor">@color/ink3</item>
+    </style>
+
+    <!-- ************** 30 Money Unit ************** -->
+    <style name="DS2.Dark.30MoneyUnit" parent="DS2.Dark">
+        <item name="android:textSize">30dp</item>
+        <item name="fontFamily">@font/app_regular</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/white1</item>
+    </style>
+
+    <style name="DS2.Dark.30MoneyUnit.3" parent="DS2.Dark.30MoneyUnit">
+        <item name="android:textColor">@color/white3</item>
+    </style>
+
+    <style name="DS2.Light.30MoneyUnit" parent="DS2.Light">
+        <item name="android:textSize">30dp</item>
+        <item name="fontFamily">@font/app_regular</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:textColor">@color/ink1</item>
+    </style>
+
+    <style name="DS2.Light.30MoneyUnit.3" parent="DS2.Light.30MoneyUnit">
+        <item name="android:textColor">@color/ink3</item>
+    </style>
+
+    <!-- ************** HERO ************** -->
+    <style name="DS2.Dark.30Hero" parent="DS2.Dark">
+        <item name="android:textSize">30dp</item>
+        <item name="fontFamily">@font/app_medium</item>
+        <item name="android:lineSpacingExtra">8dp</item>
+        <item name="android:textColor">@color/white1</item>
+    </style>
+
+    <style name="DS2.Light.30Hero" parent="DS2.Light">
+        <item name="android:textSize">30dp</item>
+        <item name="fontFamily">@font/app_medium</item>
+        <item name="android:lineSpacingExtra">8dp</item>
+        <item name="android:textColor">@color/ink1</item>
+    </style>
+
+    <!-- ************** HEADLINE ************** -->
+    <!-- dark -->
+    <style name="DS2.Dark.24Headline" parent="DS2.Dark">
+        <item name="android:textSize">24dp</item>
+        <item name="fontFamily">@font/app_medium</item>
+        <item name="android:lineSpacingExtra">8dp</item>
+        <item name="android:textColor">@color/white1</item>
+    </style>
+
+    <!-- light -->
+    <style name="DS2.Light.24Headline" parent="DS2.Light">
+        <item name="android:textSize">24dp</item>
+        <item name="fontFamily">@font/app_medium</item>
+        <item name="android:lineSpacingExtra">8dp</item>
+        <item name="android:textColor">@color/ink1</item>
+    </style>
+
+    <style name="DS2.Light.24Headline.3" parent="DS2.Light.24Headline">
+        <item name="android:textColor">@color/ink3</item>
+    </style>
+
+    <style name="DS2.Light.24Headline.4" parent="DS2.Light.24Headline">
+        <item name="android:textColor">@color/ink4</item>
+    </style>
+
+    <style name="DS2.Light.24Headline.Info" parent="DS2.Light.24Headline">
+        <item name="android:textColor">@color/informative1</item>
+    </style>
+
+    <!-- ************** SUBHEAD ************** -->
+    <style name="DS2.Dark.20Subhead" parent="DS2.Dark">
+        <item name="android:textSize">20dp</item>
+        <item name="fontFamily">@font/app_medium</item>
+        <item name="android:lineSpacingExtra">8dp</item>
+        <item name="android:textColor">@color/white1</item>
+    </style>
+
+    <style name="DS2.Light.20Subhead" parent="DS2.Light">
+        <item name="android:textSize">20dp</item>
+        <item name="fontFamily">@font/app_medium</item>
+        <item name="android:lineSpacingExtra">8dp</item>
+        <item name="android:textColor">@color/ink1</item>
+    </style>
+
+    <style name="DS2.Light.20Subhead.Info" parent="DS2.Light.20Subhead">
+        <item name="android:textColor">@color/informative1</item>
+    </style>
+
+    <style name="DS2.Light.20Subhead.Error" parent="DS2.Light.20Subhead">
+        <item name="android:textColor">@color/error1</item>
+    </style>
+
+    <!-- ************** BODY ************** -->
+    <!-- dark -->
+    <style name="DS2.Dark.16Body" parent="DS2.Dark">
+        <item name="android:textSize">16dp</item>
+        <item name="fontFamily">@font/app_regular</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+        <item name="android:textColor">@color/white1</item>
+    </style>
+
+    <style name="DS2.Dark.16Body.Medium" parent="DS2.Dark.16Body">
+        <item name="fontFamily">@font/app_medium</item>
+    </style>
+
+    <style name="DS2.Dark.16Body.Medium.3" parent="DS2.Dark.16Body.Medium">
+        <item name="android:textColor">@color/white3</item>
+    </style>
+
+    <style name="DS2.Dark.16Body.2" parent="DS2.Dark.16Body">
+        <item name="android:textColor">@color/white2</item>
+    </style>
+
+    <style name="DS2.Dark.16Body.3" parent="DS2.Dark.16Body">
+        <item name="android:textColor">@color/white3</item>
+    </style>
+
+    <!-- light -->
+    <style name="DS2.Light.16Body" parent="DS2.Light">
+        <item name="android:textSize">16dp</item>
+        <item name="fontFamily">@font/app_regular</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+        <item name="android:textColor">@color/ink1</item>
+    </style>
+
+    <style name="DS2.Light.16Body.Medium" parent="DS2.Light.16Body">
+        <item name="fontFamily">@font/app_medium</item>
+    </style>
+
+    <style name="DS2.Light.16Body.2" parent="DS2.Light.16Body">
+        <item name="android:textColor">@color/ink2</item>
+    </style>
+
+    <style name="DS2.Light.16Body.3" parent="DS2.Light.16Body">
+        <item name="android:textColor">@color/ink3</item>
+    </style>
+
+    <style name="DS2.Light.16Body.4" parent="DS2.Light.16Body">
+        <item name="android:textColor">@color/ink4</item>
+    </style>
+
+    <style name="DS2.Light.16Body.Info" parent="DS2.Light.16Body">
+        <item name="android:textColor">@color/informative1</item>
+        <item name="fontFamily">@font/app_regular</item>
+    </style>
+
+    <style name="DS2.Light.16Body.Success" parent="DS2.Light.16Body.Info">
+        <item name="android:textColor">@color/success1</item>
+    </style>
+
+    <style name="DS2.Light.16Body.Warning" parent="DS2.Light.16Body.Info">
+        <item name="android:textColor">@color/warning1</item>
+    </style>
+
+    <style name="DS2.Light.16Body.Error" parent="DS2.Light.16Body.Info">
+        <item name="android:textColor">@color/error1</item>
+    </style>
+
+    <!-- ************** PARAGRAPH ************** -->
+    <!-- dark -->
+    <style name="DS2.Dark.16Paragraph" parent="DS2.Dark">
+        <item name="android:textSize">16dp</item>
+        <item name="fontFamily">@font/app_regular</item>
+        <item name="android:lineSpacingExtra">8dp</item>
+        <item name="android:textColor">@color/white1</item>
+    </style>
+
+    <style name="DS2.Dark.16Paragraph.2" parent="DS2.Dark.16Paragraph">
+        <item name="android:textColor">@color/white2</item>
+    </style>
+
+    <style name="DS2.Dark.16Paragraph.Medium" parent="DS2.Dark.16Paragraph">
+        <item name="fontFamily">@font/app_medium</item>
+    </style>
+
+    <!-- light -->
+    <style name="DS2.Light.16Paragraph" parent="DS2.Light">
+        <item name="android:textSize">16dp</item>
+        <item name="fontFamily">@font/app_regular</item>
+        <item name="android:lineSpacingExtra">8dp</item>
+        <item name="android:textColor">@color/ink1</item>
+    </style>
+
+    <style name="DS2.Light.16Paragraph.2" parent="DS2.Light.16Paragraph">
+        <item name="android:textColor">@color/ink2</item>
+    </style>
+
+    <style name="DS2.Light.16Paragraph.Medium" parent="DS2.Light.16Paragraph">
+        <item name="fontFamily">@font/app_medium</item>
+    </style>
+
+    <!-- ************** BUTTON ************** -->
+    <style name="DS2.Light.16Button" parent="DS2.Light.16Body.Medium">
+        <item name="android:textColor">@color/informative1</item>
+    </style>
+
+    <style name="DS2.Light.16Button.3" parent="DS2.Light.16Button">
+        <item name="android:textColor">@color/informative3</item>
+    </style>
+
+    <style name="DS2.Light.16Button.Error" parent="DS2.Light.16Button">
+        <item name="android:textColor">@color/error1</item>
+    </style>
+
+    <style name="DS2.Light.16Button.Error.3" parent="DS2.Light.16Button.Error">
+        <item name="android:textColor">@color/error3</item>
+    </style>
+
+    <style name="DS2.Light.16Button.Success" parent="DS2.Light.16Button">
+        <item name="android:textColor">@color/success1</item>
+    </style>
+
+    <style name="DS2.Light.16Button.Success.3" parent="DS2.Light.16Button.Success">
+        <item name="android:textColor">@color/success3</item>
+    </style>
+
+    <style name="DS2.Light.16Button.Medium.3" parent="DS2.Light.16Body.Medium">
+        <item name="android:textColor">@color/ink3</item>
+    </style>
+    <!-- ************** CAPTION ************** -->
+    <!-- dark -->
+    <style name="DS2.Dark.14Caption" parent="DS2.Dark">
+        <item name="android:textSize">14dp</item>
+        <item name="fontFamily">@font/app_regular</item>
+        <item name="android:lineSpacingExtra">6dp</item>
+        <item name="android:textColor">@color/white1</item>
+    </style>
+
+    <style name="DS2.Dark.14Caption.Medium" parent="DS2.Dark.14Caption">
+        <item name="fontFamily">@font/app_medium</item>
+    </style>
+
+    <style name="DS2.Dark.14Caption.Medium.2" parent="DS2.Dark.14Caption.Medium">
+        <item name="android:textColor">@color/white2</item>
+    </style>
+
+    <style name="DS2.Dark.14Caption.2" parent="DS2.Dark.14Caption">
+        <item name="android:textColor">@color/white2</item>
+    </style>
+
+    <style name="DS2.Dark.14Caption.3" parent="DS2.Dark.14Caption">
+        <item name="android:textColor">@color/white3</item>
+    </style>
+
+    <!-- light -->
+    <style name="DS2.Light.14Caption" parent="DS2.Light">
+        <item name="android:textSize">14dp</item>
+        <item name="fontFamily">@font/app_regular</item>
+        <item name="android:lineSpacingExtra">6dp</item>
+        <item name="android:textColor">@color/ink1</item>
+    </style>
+
+    <style name="DS2.Light.14Caption.Medium" parent="DS2.Light.14Caption">
+        <item name="fontFamily">@font/app_medium</item>
+    </style>
+
+    <style name="DS2.Light.14Caption.Medium.2" parent="DS2.Light.14Caption.Medium">
+        <item name="android:textColor">@color/ink2</item>
+    </style>
+
+    <style name="DS2.Light.14Caption.Medium.3" parent="DS2.Light.14Caption.Medium">
+        <item name="android:textColor">@color/ink3</item>
+    </style>
+
+    <style name="DS2.Light.14Caption.Medium.Success" parent="DS2.Light.14Caption.Medium">
+        <item name="android:textColor">@color/success1</item>
+    </style>
+
+    <style name="DS2.Light.14Caption.Medium.Info" parent="DS2.Light.14Caption.Medium">
+        <item name="android:textColor">@color/informative1</item>
+    </style>
+
+    <style name="DS2.Light.14Caption.Medium.Error" parent="DS2.Light.14Caption.Medium">
+        <item name="android:textColor">@color/error1</item>
+    </style>
+
+    <style name="DS2.Light.14Caption.2" parent="DS2.Light.14Caption">
+        <item name="android:textColor">@color/ink2</item>
+    </style>
+
+    <style name="DS2.Light.14Caption.3" parent="DS2.Light.14Caption">
+        <item name="android:textColor">@color/ink3</item>
+    </style>
+
+    <style name="DS2.Light.14Caption.Info" parent="DS2.Light.14Caption">
+        <item name="android:textColor">@color/informative1</item>
+    </style>
+
+    <style name="DS2.Light.14Caption.Success" parent="DS2.Light.14Caption">
+        <item name="android:textColor">@color/success1</item>
+    </style>
+
+    <style name="DS2.Light.14Caption.Warning" parent="DS2.Light.14Caption">
+        <item name="android:textColor">@color/warning1</item>
+    </style>
+
+    <style name="DS2.Light.14Caption.Error" parent="DS2.Light.14Caption">
+        <item name="android:textColor">@color/error1</item>
+    </style>
+
+    <!-- ************** CAPTION MINI ************** -->
+    <!-- dark -->
+    <style name="DS2.Dark.12CaptionMini" parent="DS2.Dark">
+        <item name="android:textSize">12dp</item>
+        <item name="fontFamily">@font/app_regular</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+        <item name="android:textColor">@color/white1</item>
+    </style>
+
+    <style name="DS2.Dark.12CaptionMini.Medium" parent="DS2.Dark.12CaptionMini">
+        <item name="fontFamily">@font/app_medium</item>
+    </style>
+
+    <style name="DS2.Dark.12CaptionMini.2" parent="DS2.Dark.12CaptionMini">
+        <item name="android:textColor">@color/white2</item>
+    </style>
+
+    <!-- light -->
+    <style name="DS2.Light.12CaptionMini" parent="DS2.Light">
+        <item name="android:textSize">12dp</item>
+        <item name="fontFamily">@font/app_regular</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+        <item name="android:textColor">@color/ink1</item>
+    </style>
+
+    <style name="DS2.Light.12CaptionMini.Medium" parent="DS2.Light.12CaptionMini">
+        <item name="fontFamily">@font/app_medium</item>
+    </style>
+
+    <style name="DS2.Light.12CaptionMini.2" parent="DS2.Light.12CaptionMini">
+        <item name="android:textColor">@color/ink2</item>
+    </style>
+
+    <style name="DS2.Light.12CaptionMini.Error" parent="DS2.Light.12CaptionMini">
+        <item name="android:textColor">@color/error1</item>
+    </style>
+
+    <!-- deprecated -->
+    <style name="DS2.Light.16BodyWarning" parent="DS2.Light.16Body.Info">
+        <item name="android:textColor">@color/warning1</item>
+    </style>
+
+    <style name="DS2.Light.16BodyError" parent="DS2.Light.16Body.Info">
+        <item name="android:textColor">@color/error1</item>
+    </style>
+</resources>

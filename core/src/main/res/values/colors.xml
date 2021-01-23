@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingDefaultResource">
+    <!--system-->
+
+    <color name="primary">#DC2323</color>
+    <color name="primaryDark">#960A0A</color>
+    <color name="brand">#DC2323</color>
+    <color name="accent">#4199dd</color>
+    <color name="darkBlue">#474384</color>
+
+    <!--Secondary color palette-->
+    <color name="secondaryAccent">#355587</color>
+    <color name="secondaryLight">#3c73aa</color>
+    <color name="secondaryDark">#1e3c78</color>
+    <color name="lightYellow">#ffdc55</color>
+    <color name="darkPeriwinkle">#7577cd</color>
+    <color name="lightBlue">#F7F6FB</color>
+    <color name="lightBlueDark">#EAF0F6</color>
+
+    <!--Informative-->
+    <color name="active">#2987fd</color>
+
+    <!--Other-->
+    <color name="darkGrey">#333333</color>
+    <color name="grey">#666666</color>
+    <color name="midGrey">#999999</color>
+    <color name="lightGrey">#c1c1c1</color>
+    <color name="background">#f6f6f6</color>
+
+    <!--button-->
+    <color name="btnNormal">@color/secondaryAccent</color>
+    <color name="btnNormalPressed">@color/secondaryDark</color>
+    <color name="btnDisabled">@color/lightGrey</color>
+
+    <!--layout-->
+    <color name="border">#c8c8c8</color>
+    <color name="verify_pin_divider">#f1f1f1</color>
+    <color name="bg_stroke">#f1f1f1</color>
+
+    <!--other-->
+    <color name="lineDivider">#e7e7e7</color>
+    <color name="lineDividerDark">#C1C1C1</color>
+    <color name="profileDivider">#f1f1f1</color>
+    <color name="shimmer_color">#55efefef</color>
+    <color name="editTextLineColor">#e7e7e7</color>
+
+    <!--tab-->
+    <color name="tabSelected">#ffffff</color>
+    <color name="tabUnselected">#474384</color>
+
+    <color name="article_promotion_percentage_bgr">#c6212c</color>
+    <color name="article_promotion_percentage_text">#ffffff</color>
+
+    <color name="toolbar_divider">#eaeaea</color>
+    <color name="colorPrimary">#FFF</color>
+    <color name="textContent">@color/darkGrey</color>
+    <color name="hyperlink">@color/active</color>
+    <color name="placeholder">#E5E5E5</color>
+    <color name="bgSkeleton">#E5E5E5</color>
+
+    <!--others-->
+    <color name="bgOnBoarding">#F5F8FB</color>
+    <color name="txtCountdown">#f24b4b</color>
+
+    <!-- Design system -->
+    <!-- https://app.zeplin.io/project/5bceae5a103fa80994ff5e50/screen/5cbccbf05fd367588bfdbcb6 -->
+    <color name="textPrimary">#333333</color>
+    <color name="textSecondary">#666666</color>
+    <color name="white">#ffffff</color>
+    <color name="textLighter">#c1c1c1</color>
+    <color name="success">#00bc3c</color>
+    <color name="informative">#2987fd</color>
+    <color name="textSubtitle">#999999</color>
+    <color name="error">#f24b4b</color>
+    <color name="warning">#feb300</color>
+    <color name="blueAccent">#355587</color>
+
+    <color name="white_alpha30">#1AFFFFFF</color>
+    <color name="black_alpha80">#CC000000</color>
+
+    <!-- design system 2 -->
+    <color name="branding">#dc2323</color> <!-- Deprecated will remove in version 28.0 -->
+    <color name="blue_branding">#355587</color>
+    <color name="red_branding">#dc2323</color>
+    <color name="place_holder">#e8edf3</color>
+    <color name="ink1">#22313F</color>
+    <color name="ink2">#80011222</color>
+    <color name="ink3">#4c011222</color>
+    <color name="ink4">#19011222</color>
+    <color name="ink5">#0c011222</color>
+    <color name="text1">#49535c</color> <!-- Deprecated will remove in version 28.0 -->
+    <color name="text2">#b349535c</color> <!-- Deprecated will remove in version 28.0 -->
+    <color name="text3">#6649535c</color> <!-- Deprecated will remove in version 28.0 -->
+    <color name="white1">#ffffff</color>
+    <color name="white2">#b3ffffff</color>
+    <color name="white3">#4cffffff</color>
+    <color name="white4">#19ffffff</color>
+    <color name="background_light">#fafdff</color>
+    <color name="background_dark">#f2f3f4</color>
+    <color name="background_grey">#fafdff</color> <!-- Deprecated will remove in version 28.0 -->
+    <color name="informative1">#2f6bff</color>
+    <color name="informative2">#cc2f6bff</color>
+    <color name="informative3">#4d2f6bff</color>
+    <color name="informative4">#192f6bff</color>
+    <color name="informative5">#0c2f6bff</color>
+    <color name="success1">#00bc3c</color>
+    <color name="success2">#cc00bc3c</color>
+    <color name="success3">#4b00bc3c</color>
+    <color name="success4">#1900bc3c</color>
+    <color name="warning1">#ff821e</color>
+    <color name="warning2">#ccff821e</color>
+    <color name="warning3">#4dff821e</color>
+    <color name="warning4">#19ff821e</color>
+    <color name="error1">#e60a32</color>
+    <color name="error2">#cce60a32</color>
+    <color name="error3">#4ce60a32</color>
+    <color name="error4">#19e60a32</color>
+    <color name="transparent">#00000000</color>
+
+    <!--Top Snack Bar-->
+    <color name="warm_grey">#8e8e8e</color>
+    <color name="shadow_color">#94444444</color>
+    <color name="translucent_black">#22000000</color>
+    <color name="modal">#00000000</color>
+
+    <!--Layout-->
+    <color name="shadow_color_layout">#0c000000</color>
+
+    <!-- DSLarge Text Field Unit Color -->
+    <color name="unit_span_color_ds_large_text_field">#B2B7BC</color>
+    <!-- DSSkeleton -->
+    <color name="skeleton_run">#E5E5E5</color>
+    <color name="skeleton_startColor">#F5F5F5</color>
+    <color name="skeleton_endColor">#E6E7E9</color>
+</resources>

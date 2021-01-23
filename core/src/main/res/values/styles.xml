@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by do thanh long on 1/23/21 11:15 AM.
+  ~ Copyright (c) 2021. All rights reserved.
+  ~ Last modified 1/23/21 11:15 AM
+  -->
+
+<resources>
+
+    <style name="roundedCornersImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+</resources>

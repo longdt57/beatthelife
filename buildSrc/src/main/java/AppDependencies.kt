@@ -54,6 +54,10 @@ object AppDependencies {
     const val firebaseCrashytics = "com.google.firebase:firebase-crashlytics-ktx"
     const val firebaseAuth = "com.google.firebase:firebase-auth"
     const val firebasePerf = "com.google.firebase:firebase-perf"
+
+    // Glide
+    private const val glideVersion = "4.11.0"
+    const val glide = "com.github.bumptech.glide:glide:$glideVersion"
 }
 
 object Network {

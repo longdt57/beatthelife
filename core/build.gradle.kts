@@ -37,6 +37,7 @@ dependencies {
     addKotlin()
     addHilt()
     addAppCompat()
+    addMaterialDesign()
     addLifeCycle()
     addNavigation()
     addReactiveX()

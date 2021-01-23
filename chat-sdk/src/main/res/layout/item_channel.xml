@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ctlContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:foreground="?attr/selectableItemBackground"
+        android:padding="@dimen/padding_2"
+        tools:ignore="UnusedAttribute">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/DS2.Light.16Body.Medium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_1p5"
+            android:layout_marginEnd="@dimen/margin_1"
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            android:lines="1"
+            app:layout_constraintEnd_toStartOf="@id/tvChannelTime"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/avatarView"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/template_short" />
+
+        <TextView
+            android:id="@+id/tvChannelTime"
+            style="@style/DS2.Light.12CaptionMini.2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvTitle"
+            tools:text="13:30" />
+
+        <TextView
+            android:id="@+id/tvMessage"
+            style="@style/DS2.Light.14Caption.Medium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_0p5"
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            android:lines="1"
+            app:layout_constraintEnd_toEndOf="@id/tvTitle"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            tools:text="@string/template_long" />
+
+        <LinearLayout
+            android:id="@+id/layoutIcons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@id/tvMessage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvMessage">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/viewDot"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginStart="@dimen/margin_0p5"
+                android:visibility="gone"
+                app:shapeAppearanceOverlay="@style/roundedCornersImageView"
+                app:srcCompat="@color/active"
+                tools:visibility="visible" />
+        </LinearLayout>
+
+        <!--  Replace by avatar   -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/avatarView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/roundedCornersImageView"
+            app:srcCompat="@color/active" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

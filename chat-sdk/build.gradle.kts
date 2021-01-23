@@ -26,6 +26,10 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     androidExtensions {
         isExperimental = true
     }
@@ -40,6 +44,8 @@ dependencies {
     addHilt()
     addReactiveX()
     addsRetrofit()
+    addMaterialDesign()
+    addConstraintLayout()
     addLifeCycle()
     addTimber()
 
@@ -47,4 +53,7 @@ dependencies {
     implementation(AppDependencies.firebaseFireStore)
     implementation(AppDependencies.firebaseAuth)
 
+    implementation(project(":core"))
+
+    implementation(AppDependencies.glide)
 }

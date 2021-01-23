@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by do thanh long on 1/23/21 10:29 AM.
+  ~ Copyright (c) 2021. All rights reserved.
+  ~ Last modified 1/23/21 10:29 AM
+  -->
+
+<resources>
+    <dimen name="padding_0p5">4dp</dimen>
+    <dimen name="padding_1">8dp</dimen>
+    <dimen name="padding_2">16dp</dimen>
+    <dimen name="padding_3">24dp</dimen>
+    <dimen name="padding_4">32dp</dimen>
+    <dimen name="padding_5">40dp</dimen>
+    <dimen name="padding_6">48dp</dimen>
+    <dimen name="padding_1p5">12dp</dimen>
+    <dimen name="padding_10">80dp</dimen>
+</resources>
