@@ -12,4 +12,9 @@ abstract class BaseFragment<V : BaseViewModel> : Fragment(), ViewInterface<V> {
         setupUI()
         setupViewModel()
     }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initViewModel()
+    }
 }

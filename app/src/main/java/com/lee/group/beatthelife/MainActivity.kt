@@ -32,7 +32,7 @@ class MainActivity : BaseAuthenticatedActivity<ActivityMainBinding, MainViewMode
         setupTrackerUserId()
     }
 
-    override fun observeViewModel() = Unit
+    override fun setupViewModel() = Unit
 
     private fun setupNavigation() {
         val navView: BottomNavigationView = binding.navView

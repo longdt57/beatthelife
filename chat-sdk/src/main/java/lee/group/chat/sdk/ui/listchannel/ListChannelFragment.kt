@@ -7,15 +7,27 @@
 package lee.group.chat.sdk.ui.listchannel
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import lee.group.chat.sdk.data.model.channel.BaseChannel
+import lee.group.chat.sdk.data.model.channel.ChatChannel
 import lee.group.chat.sdk.databinding.FragmentListChannelBinding
+import lee.group.chat.sdk.ui.listchannel.adapter.ListChannelAdapter
 import lee.group.core.base.view.binding.BaseBindingFragment
 
 @AndroidEntryPoint
 class ListChannelFragment :
     BaseBindingFragment<FragmentListChannelBinding, ListChannelViewModel>() {
+
+    private val adapter: ListChannelAdapter by lazy {
+        ListChannelAdapter(
+            onClickCallback(),
+            { viewModel.loadMore() }
+        )
+    }
 
     override fun provideBinding(
         inflater: LayoutInflater,
@@ -27,14 +39,50 @@ class ListChannelFragment :
     override val viewModel: ListChannelViewModel by viewModels()
 
     override fun setupUI() {
-        TODO("Not yet implemented")
+        setupRecyclerView()
     }
 
     override fun setupViewModel() {
         viewModel.listChannel.observe(
             viewLifecycleOwner,
             {
+                adapter.submitList(it)
             }
         )
+    }
+
+    override fun initViewModel() {
+        super.initViewModel()
+        viewModel.getChannels()
+    }
+
+    /**
+     * Handle Item click
+     *
+     * @param view view click
+     * @param position item position
+     * @param item data
+     */
+    private fun onClickCallback() = fun(view: View, position: Int, item: BaseChannel) {
+        adapter.notifyItemChanged(position)
+        when (view.id) {
+            else -> onChannelClickCallback(item)
+        }
+    }
+
+    private fun onChannelClickCallback(item: BaseChannel) {
+        when (item) {
+            is ChatChannel -> {
+                // openChatChannel(item.channelId)
+            }
+        }
+    }
+
+    /**
+     * Set Up Recycler View. Add Swipe
+     */
+    private fun setupRecyclerView() {
+        binding.rvChat.layoutManager = LinearLayoutManager(context)
+        binding.rvChat.adapter = adapter
     }
 }

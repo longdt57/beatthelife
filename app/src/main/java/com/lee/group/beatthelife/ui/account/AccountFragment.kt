@@ -21,5 +21,5 @@ class AccountFragment : BaseBindingFragment<FragmentAccountBinding, AccountViewM
 
     override fun setupUI() = Unit
 
-    override fun observeViewModel() = Unit
+    override fun setupViewModel() = Unit
 }

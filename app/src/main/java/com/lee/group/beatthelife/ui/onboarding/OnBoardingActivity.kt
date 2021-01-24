@@ -32,7 +32,7 @@ class OnBoardingActivity : BaseBindingActivity<ActivityOnboardingBinding, OnBoar
         }
     }
 
-    override fun observeViewModel() = Unit
+    override fun setupViewModel() = Unit
 
     private fun startAuthentication() {
         checkAuthentication(

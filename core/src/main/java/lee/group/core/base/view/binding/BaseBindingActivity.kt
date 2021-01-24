@@ -1,12 +1,13 @@
 package lee.group.core.base.view.binding
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
-import lee.group.core.base.view.BaseActivity
+import lee.group.core.base.view.ViewInterface
 import lee.group.core.base.viewmodel.BaseViewModel
 
 abstract class BaseBindingActivity<T : ViewBinding, V : BaseViewModel> :
-    BaseActivity<V>(), BindingInterface<T> {
+    AppCompatActivity(), ViewInterface<V>, BindingInterface<T> {
 
     override lateinit var binding: T
 

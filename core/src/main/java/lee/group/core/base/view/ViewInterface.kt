@@ -7,4 +7,6 @@ interface ViewInterface<V> {
     fun setupUI()
 
     fun setupViewModel()
+
+    fun initViewModel() {}
 }

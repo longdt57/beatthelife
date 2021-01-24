@@ -11,7 +11,6 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOn
@@ -20,6 +19,7 @@ import lee.group.chat.sdk.data.IChannelRepository
 import lee.group.chat.sdk.data.model.channel.BaseChannel
 import lee.group.core.base.viewmodel.BaseViewModel
 import lee.group.core.base.viewmodel.SingleLiveData
+import timber.log.Timber
 
 @HiltViewModel
 class ListChannelViewModel @Inject constructor(
@@ -28,15 +28,19 @@ class ListChannelViewModel @Inject constructor(
 
     val listChannel: MutableLiveData<List<BaseChannel>> = SingleLiveData()
 
-    @ExperimentalCoroutinesApi
-    private fun getChannels() {
+    fun getChannels() {
         viewModelScope.launch {
             channelRepository.observeAllChannels()
+                .catch { error ->
+                    Timber.e(error)
+                }
                 .flowOn(Dispatchers.Main)
-                .catch { error -> }
                 .collect { items ->
                     listChannel.value = items
                 }
         }
+    }
+
+    fun loadMore() {
     }
 }

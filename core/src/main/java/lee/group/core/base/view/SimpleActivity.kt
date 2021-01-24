@@ -9,5 +9,5 @@ abstract class SimpleActivity : BaseActivity<SimpleViewModel>() {
 
     override fun setupUI() = Unit
 
-    override fun observeViewModel() = Unit
+    override fun setupViewModel() = Unit
 }

@@ -22,7 +22,7 @@ class InboxFragment : BaseBindingFragment<FragmentInboxBinding, InboxViewModel>(
     override fun setupUI() {
     }
 
-    override fun observeViewModel() {
+    override fun setupViewModel() {
         viewModel.text.observe(
             viewLifecycleOwner,
             {
