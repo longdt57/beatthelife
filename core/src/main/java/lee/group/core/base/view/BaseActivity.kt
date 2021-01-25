@@ -11,8 +11,4 @@ abstract class BaseActivity<V : BaseViewModel> : AppCompatActivity(), ViewInterf
         setupUI()
         setupViewModel()
     }
-
-    override fun onStart() {
-        super.onStart()
-    }
 }

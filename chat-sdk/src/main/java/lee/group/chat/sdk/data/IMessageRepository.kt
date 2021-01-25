@@ -1,36 +1,35 @@
 package lee.group.chat.sdk.data
 
-import io.reactivex.Completable
-import io.reactivex.Observable
+import kotlinx.coroutines.flow.Flow
 import lee.group.chat.sdk.data.model.ChatMessage
 import lee.group.chat.sdk.data.model.channel.ChatChannel
 import lee.group.chat.sdk.data.model.event.OneChatEvent
 
 interface IMessageRepository {
 
-    fun init(channelId: String): Observable<ChatChannel>
+    suspend fun init(channelId: String): Flow<ChatChannel>
 
-    fun getPreviousMessages(
+    suspend fun getPreviousMessages(
         limit: Long = MESSAGE_PAGING,
         timePoint: Long? = null
-    ): Observable<List<ChatMessage>>
+    ): Flow<List<ChatMessage>>
 
-    fun getNextMessages(
+    suspend fun getNextMessages(
         limit: Long = MESSAGE_PAGING,
         timePoint: Long? = null
-    ): Observable<List<ChatMessage>>
+    ): Flow<List<ChatMessage>>
 
-    fun sendTextMessage(message: String): Completable
+    suspend fun sendTextMessage(message: String): Flow<Unit>
 
-    fun sendMessage(chatMessage: ChatMessage): Completable
+    suspend fun sendMessage(chatMessage: ChatMessage): Flow<Unit>
 
-    fun observeChannelEvents(): Observable<OneChatEvent>
+    suspend fun observeChannelEvents(): Flow<OneChatEvent>
 
-    fun removeMessage(messageId: String): Completable
+    suspend fun removeMessage(messageId: String): Flow<Unit>
 
-    fun markAllMessagesAsRead(): Completable
+    suspend fun markAllMessagesAsRead(): Flow<Unit>
 
-    fun release()
+    suspend fun release()
 }
 
 internal const val MESSAGE_PAGING: Long = 20

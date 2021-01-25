@@ -4,4 +4,4 @@ import lee.group.chat.sdk.data.model.ChatMessage
 
 sealed class OneChatEvent
 
-class MessageReceived(val chatMessage: ChatMessage) : OneChatEvent()
+class MessageReceived(val chatMessages: List<ChatMessage>) : OneChatEvent()

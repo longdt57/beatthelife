@@ -1,15 +1,14 @@
 package lee.group.chat.sdk.data
 
-import io.reactivex.Completable
-import io.reactivex.Observable
+import kotlinx.coroutines.flow.Flow
 import lee.group.chat.sdk.data.model.ChatUser
 import lee.group.chat.sdk.data.model.channel.ChatChannel
 
 interface IUserRepository {
 
-    fun observeChannel(groupID: String): Observable<ChatChannel>
+    suspend fun observeChannel(groupID: String): Flow<ChatChannel>
 
-    fun removeChannel(groupID: String): Completable
+    suspend fun removeChannel(groupID: String): Flow<Unit>
 
-    fun observeCurrentUser(): Observable<ChatUser>
+    suspend fun observeCurrentUser(): Flow<ChatUser>
 }

@@ -1,8 +1,11 @@
 package lee.group.chat.sdk.data.repo_impl
 
-import io.reactivex.Completable
-import io.reactivex.Observable
-import java.util.concurrent.TimeUnit
+import javax.inject.Inject
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flatMapConcat
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import lee.group.chat.sdk.data.IMessageRepository
 import lee.group.chat.sdk.data.firestore.IFireStoreChatGroupService
 import lee.group.chat.sdk.data.firestore.IFireStoreChatMessageService
@@ -11,7 +14,6 @@ import lee.group.chat.sdk.data.model.ChatMessage
 import lee.group.chat.sdk.data.model.channel.ChatChannel
 import lee.group.chat.sdk.data.model.event.MessageReceived
 import lee.group.chat.sdk.data.model.event.OneChatEvent
-import lee.group.chat.sdk.data.utils.FIRE_STORE_DEFAULT_REQUEST_TIMEOUT
 import lee.group.chat.sdk.data.utils.isCurrentUser
 import lee.group.chat.sdk.data.utils.makeDeleteMessage
 import lee.group.chat.sdk.data.utils.makeSendingMessage
@@ -22,7 +24,8 @@ import lee.group.chat.sdk.data.utils.toFireStoreMessage
 /**
  * This repository handle List Channel sync data
  */
-internal class MessageRepositoryImpl constructor(
+@FlowPreview
+internal class MessageRepositoryImpl @Inject constructor(
     private val chatGroupFireStore: IFireStoreChatGroupService,
     private val chatMessageFireStore: IFireStoreChatMessageService
 ) : IMessageRepository {
@@ -35,81 +38,73 @@ internal class MessageRepositoryImpl constructor(
      * Message Repository Impl
      **************************/
 
-    override fun getPreviousMessages(limit: Long, timePoint: Long?): Observable<List<ChatMessage>> {
+    override suspend fun getPreviousMessages(
+        limit: Long,
+        timePoint: Long?
+    ): Flow<List<ChatMessage>> {
         val timeStamp = timePoint ?: previousFetchTime
         return chatMessageFireStore.getPreviousMessages(channelId, limit, timeStamp)
-            .timeout(FIRE_STORE_DEFAULT_REQUEST_TIMEOUT, TimeUnit.MILLISECONDS)
             .map { it.toChatMessages() }
-            .doOnNext { updateNextAndPreviousFetchTime(it) }
+            .onEach {
+                updateNextAndPreviousFetchTime(it)
+            }
     }
 
-    override fun getNextMessages(limit: Long, timePoint: Long?): Observable<List<ChatMessage>> {
+    override suspend fun getNextMessages(limit: Long, timePoint: Long?): Flow<List<ChatMessage>> {
         val timeStamp = timePoint ?: nextFetchTime
         return chatMessageFireStore.getNextMessages(channelId, limit, timeStamp)
-            .timeout(FIRE_STORE_DEFAULT_REQUEST_TIMEOUT, TimeUnit.MILLISECONDS)
             .map { it.toChatMessages() }
-            .doOnNext { updateNextAndPreviousFetchTime(it) }
+            .onEach { updateNextAndPreviousFetchTime(it) }
     }
 
-    override fun init(channelId: String): Observable<ChatChannel> {
+    override suspend fun init(channelId: String): Flow<ChatChannel> {
         this.channelId = channelId
         return chatGroupFireStore.observeGroup(channelId)
             .map { it.toChannel() }
     }
 
-    override fun sendTextMessage(message: String): Completable {
+    override suspend fun sendTextMessage(message: String): Flow<Unit> {
         val chatMessage = ChatMessage.makeSendingMessage(message)
         return chatMessageFireStore.sendMessage(channelId, chatMessage.toFireStoreMessage())
-            .andThen(updateChannelLastMessage(chatMessage))
-            .timeout(FIRE_STORE_DEFAULT_REQUEST_TIMEOUT, TimeUnit.MILLISECONDS)
+            .flatMapConcat { updateChannelLastMessage(chatMessage) }
     }
 
-    override fun sendMessage(chatMessage: ChatMessage): Completable {
+    override suspend fun sendMessage(chatMessage: ChatMessage): Flow<Unit> {
         return chatMessageFireStore.sendMessage(channelId, chatMessage.toFireStoreMessage())
-            .andThen(updateChannelLastMessage(chatMessage))
-            .timeout(FIRE_STORE_DEFAULT_REQUEST_TIMEOUT, TimeUnit.MILLISECONDS)
+            .flatMapConcat { updateChannelLastMessage(chatMessage) }
     }
 
-    override fun observeChannelEvents(): Observable<OneChatEvent> {
+    override suspend fun observeChannelEvents(): Flow<OneChatEvent> {
         return chatMessageFireStore.observeNewMessages(channelId)
-            .flatMapIterable {
-                it.toChatMessages()
-            }
-            .distinct()
-            .map { MessageReceived(it) }
+            .map { MessageReceived(it.toChatMessages()) }
     }
 
-    override fun release() {
+    override suspend fun release() {
         chatGroupFireStore.removeLastGroupObserver()
         chatMessageFireStore.removeMessagesObserver()
     }
 
-    override fun removeMessage(messageId: String): Completable {
+    override suspend fun removeMessage(messageId: String): Flow<Unit> {
         return chatMessageFireStore.removeMessage(channelId, messageId)
-            .andThen(updateChannelLastMessage(ChatMessage.makeDeleteMessage()))
-            .timeout(FIRE_STORE_DEFAULT_REQUEST_TIMEOUT, TimeUnit.MILLISECONDS)
+            .onEach { updateChannelLastMessage(ChatMessage.makeDeleteMessage()) }
     }
 
-    override fun markAllMessagesAsRead(): Completable {
+    override suspend fun markAllMessagesAsRead(): Flow<Unit> {
         return chatGroupFireStore.getGroup(channelId)
             .map { createNewUsersWithLastSeen(it.members.orEmpty()) }
-            .flatMap { chatGroupFireStore.markAllMessagesAsRead(channelId, it) }
-            .flatMapCompletable { Completable.complete() }
-            .timeout(FIRE_STORE_DEFAULT_REQUEST_TIMEOUT, TimeUnit.MILLISECONDS)
+            .flatMapConcat { chatGroupFireStore.markAllMessagesAsRead(channelId, it) }
     }
 
-    private fun updateChannelLastMessage(
+    private suspend fun updateChannelLastMessage(
         newMessage: ChatMessage
-    ): Completable {
+    ): Flow<Unit> {
         return chatGroupFireStore.updateChatGroupLastMessage(
             channelId,
             newMessage.toFireStoreMessage()
         )
-            .timeout(FIRE_STORE_DEFAULT_REQUEST_TIMEOUT, TimeUnit.MILLISECONDS)
-            .flatMapCompletable { Completable.complete() }
     }
 
-    private fun createNewUsersWithLastSeen(
+    private suspend fun createNewUsersWithLastSeen(
         members: List<FireStoreUser>
     ): List<FireStoreUser> {
         val newListMembers = ArrayList<FireStoreUser>()
@@ -125,7 +120,7 @@ internal class MessageRepositoryImpl constructor(
         return newListMembers
     }
 
-    private fun updateNextAndPreviousFetchTime(listMessage: List<ChatMessage>) {
+    private suspend fun updateNextAndPreviousFetchTime(listMessage: List<ChatMessage>) {
         if (listMessage.isNullOrEmpty()) return
         nextFetchTime =
             kotlin.math.max(nextFetchTime, listMessage.maxBy { it.createdAt }!!.createdAt)

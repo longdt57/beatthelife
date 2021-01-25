@@ -1,8 +1,8 @@
 package lee.group.chat.sdk.data.firestore.impl
 
-import com.google.firebase.firestore.ListenerRegistration
-import io.reactivex.Single
+import javax.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import lee.group.chat.sdk.data.firestore.IFireStoreChatUserService
@@ -10,44 +10,43 @@ import lee.group.chat.sdk.data.firestore.model.FireStoreUser
 import lee.group.chat.sdk.data.firestore.utils.ChatFirebase
 import lee.group.chat.sdk.data.firestore.utils.FireStoreChatRef
 import lee.group.chat.sdk.data.firestore.utils.onFireStoreSnapshotListener
-import lee.group.chat.sdk.data.firestore.utils.onRxSingleListener
+import lee.group.chat.sdk.data.firestore.utils.onProducerScopeOffer
 import lee.group.chat.sdk.data.firestore.utils.toObjectOrNull
+import lee.group.chat.sdk.data.utils.ChatUserManager
 
-internal class FireStoreChatUserServiceImpl : IFireStoreChatUserService {
+@ExperimentalCoroutinesApi
+internal class FireStoreChatUserServiceImpl @Inject constructor() : IFireStoreChatUserService {
 
-    private var userListener: ListenerRegistration? = null
-
-    override fun getUser(userId: String): Single<FireStoreUser> {
-        if (currentFireStoreUser?.uid == userId) return Single.just(currentFireStoreUser)
-
-        return Single.create<FireStoreUser> { emitter ->
-            FireStoreChatRef.getUserDocument(userId)
-                .get()
-                .addOnSuccessListener {
-                    it.toObjectOrNull<FireStoreUser>()?.let { user ->
-                        updateCurrentUser(user)
-                        emitter.onRxSingleListener(null, user)
-                    }
-                }
-                .addOnFailureListener { error ->
-                    emitter.onRxSingleListener(error, null)
-                }
+    override suspend fun getCurrentUser(): Flow<FireStoreUser> = callbackFlow {
+        val userId = ChatUserManager.getCurrentActiveUID()
+        if (currentFireStoreUser?.uid == userId) {
+            offer(currentFireStoreUser!!)
+            close()
         }
+
+        FireStoreChatRef.getUserDocument(userId.orEmpty())
+            .get()
+            .addOnSuccessListener {
+                it.toObjectOrNull<FireStoreUser>()?.let { user ->
+                    updateCurrentUser(user)
+                    onProducerScopeOffer(null, user)
+                    close()
+                }
+            }
+            .addOnFailureListener { error ->
+                onProducerScopeOffer(error, null)
+            }
     }
 
     @ExperimentalCoroutinesApi
-    override suspend fun observeUser(userId: String): Flow<FireStoreUser> = callbackFlow {
-        userListener?.remove()
-        userListener = FireStoreChatRef.getUserDocument(userId)
+    override suspend fun observeCurrentUser(): Flow<FireStoreUser> = callbackFlow {
+        val userId = ChatUserManager.getCurrentActiveUID().orEmpty()
+        val userListener = FireStoreChatRef.getUserDocument(userId)
             .addSnapshotListener { value, error ->
                 updateCurrentUser(value?.toObject(FireStoreUser::class.java))
                 onFireStoreSnapshotListener(error, value)
             }
-    }
-
-    override fun removeUserObserver() {
-        userListener?.remove()
-        userListener = null
+        awaitClose { userListener.remove() }
     }
 
     private fun updateCurrentUser(fireStoreUser: FireStoreUser?) {

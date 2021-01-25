@@ -1,36 +1,34 @@
 package lee.group.chat.sdk.data.firestore
 
 import com.google.firebase.firestore.QuerySnapshot
-import io.reactivex.Completable
-import io.reactivex.Observable
-import io.reactivex.Single
+import kotlinx.coroutines.flow.Flow
 import lee.group.chat.sdk.data.firestore.model.FireStoreGroup
 import lee.group.chat.sdk.data.firestore.model.FireStoreMessage
 import lee.group.chat.sdk.data.firestore.model.FireStoreUser
 
 internal interface IFireStoreChatGroupService {
 
-    fun getGroup(groupId: String): Single<FireStoreGroup>
+    suspend fun getGroup(groupId: String): Flow<FireStoreGroup>
 
-    fun getGroups(groupIds: List<String>): Single<List<FireStoreGroup>>
+    suspend fun getGroups(groupIds: List<String>): Flow<List<FireStoreGroup>>
 
-    fun observeGroup(groupId: String): Observable<FireStoreGroup>
+    suspend fun observeGroup(groupId: String): Flow<FireStoreGroup>
 
-    fun observeGroups(groupIds: List<String>): Observable<QuerySnapshot>
+    suspend fun observeGroups(groupIds: List<String>): Flow<QuerySnapshot>
 
-    fun updateChatGroupLastMessage(
+    suspend fun updateChatGroupLastMessage(
         groupId: String,
         fireStoreMessage: FireStoreMessage
-    ): Single<FireStoreMessage>
+    ): Flow<Unit>
 
-    fun removeAllGroupsObserver()
+    suspend fun removeAllGroupsObserver()
 
-    fun removeLastGroupObserver()
+    suspend fun removeLastGroupObserver()
 
-    fun removeGroup(groupId: String): Completable
+    suspend fun removeGroup(groupId: String): Flow<Unit>
 
-    fun markAllMessagesAsRead(
+    suspend fun markAllMessagesAsRead(
         groupId: String,
         members: List<FireStoreUser>
-    ): Single<FireStoreUser>
+    ): Flow<Unit>
 }

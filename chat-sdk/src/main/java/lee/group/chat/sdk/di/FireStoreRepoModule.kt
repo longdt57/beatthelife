@@ -4,11 +4,9 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
-import lee.group.chat.sdk.data.firestore.IChatFirebaseAuth
 import lee.group.chat.sdk.data.firestore.IFireStoreChatGroupService
 import lee.group.chat.sdk.data.firestore.IFireStoreChatMessageService
 import lee.group.chat.sdk.data.firestore.IFireStoreChatUserService
-import lee.group.chat.sdk.data.firestore.impl.ChatFirebaseAuthImpl
 import lee.group.chat.sdk.data.firestore.impl.FireStoreChatGroupServiceImpl
 import lee.group.chat.sdk.data.firestore.impl.FireStoreChatMessageServiceImpl
 import lee.group.chat.sdk.data.firestore.impl.FireStoreChatUserServiceImpl
@@ -31,7 +29,4 @@ internal abstract class FireStoreRepoModule {
     abstract fun getFireStoreChatUserService(
         impl: FireStoreChatUserServiceImpl
     ): IFireStoreChatUserService
-
-    @Binds
-    abstract fun getOneChatFirebaseAuth(impl: ChatFirebaseAuthImpl): IChatFirebaseAuth
 }

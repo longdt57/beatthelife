@@ -1,8 +1,9 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
+    id("dagger.hilt.android.plugin")
     id("kotlin-kapt")
-    id("kotlin-android-extensions")
+    id("kotlin-parcelize")
     id("lee.group.beat")
 }
 
@@ -30,10 +31,6 @@ android {
         viewBinding = true
     }
 
-    androidExtensions {
-        isExperimental = true
-    }
-
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -47,7 +44,6 @@ dependencies {
     addConstraintLayout()
 
     addHilt()
-    addReactiveX()
     addsRetrofit()
     addLifeCycle()
     implementation(AppDependencies.glide)
@@ -57,6 +53,6 @@ dependencies {
     implementation(AppDependencies.firebaseFireStore)
     implementation(AppDependencies.firebaseAuth)
 
-    implementation(project(":core"))
     implementation(AppDependencies.swiperefreshlayout)
+    implementation(project(":core"))
 }
