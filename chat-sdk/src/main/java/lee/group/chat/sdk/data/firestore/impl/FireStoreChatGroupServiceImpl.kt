@@ -27,10 +27,6 @@ import lee.group.chat.sdk.data.firestore.utils.toObjectsOrEmpty
 @ExperimentalCoroutinesApi
 internal class FireStoreChatGroupServiceImpl @Inject constructor() : IFireStoreChatGroupService {
 
-    private var groupsListener: MutableList<ListenerRegistration> = mutableListOf()
-
-    private var groupListener: ListenerRegistration? = null
-
     override suspend fun getGroup(groupId: String): Flow<FireStoreGroup> = callbackFlow {
         try {
             FireStoreChatRef.getGroupDocument(groupId)
@@ -63,12 +59,15 @@ internal class FireStoreChatGroupServiceImpl @Inject constructor() : IFireStoreC
         }
 
     override suspend fun observeGroups(groupIds: List<String>): Flow<QuerySnapshot> = callbackFlow {
-        removeAllGroupsObserver()
-        observeFireStoreChannel(groupIds, this)
+        val listeners = observeFireStoreChannel(groupIds, this)
+        awaitClose {
+            listeners.forEach { listener ->
+                listener.remove()
+            }
+        }
     }
 
     override suspend fun observeGroup(groupId: String): Flow<FireStoreGroup> = callbackFlow {
-        removeAllGroupsObserver()
         val groupListener = FireStoreChatRef.getGroupDocument(groupId)
             .addSnapshotListener { value, error ->
                 val data = value?.toObjectOrNull<FireStoreGroup>()
@@ -103,17 +102,6 @@ internal class FireStoreChatGroupServiceImpl @Inject constructor() : IFireStoreC
         FIRE_STORE_GROUP_REMOVED to false
     )
 
-    override suspend fun removeAllGroupsObserver() {
-        groupsListener.forEach { item ->
-            item.remove()
-        }
-        groupsListener.clear()
-    }
-
-    override suspend fun removeLastGroupObserver() {
-        groupListener?.remove()
-    }
-
     override suspend fun markAllMessagesAsRead(
         groupId: String,
         members: List<FireStoreUser>
@@ -134,20 +122,24 @@ internal class FireStoreChatGroupServiceImpl @Inject constructor() : IFireStoreC
     private fun observeFireStoreChannel(
         list: List<String>,
         emitter: ProducerScope<QuerySnapshot>
-    ) {
+    ): List<ListenerRegistration> {
+        val listeners = mutableListOf<ListenerRegistration>()
         for (i in 0..list.size / MAX_CHANNEL_SIZE) {
             val index = kotlin.math.min(MAX_CHANNEL_SIZE * (i + 1), list.size)
             val queryList = list.subList(MAX_CHANNEL_SIZE * i, index)
-            observeGroupBy10(queryList, emitter)
+            observeGroupBy10(queryList, emitter)?.let {
+                listeners.add(it)
+            }
         }
+        return listeners
     }
 
     private fun observeGroupBy10(
         groupIds: List<String>,
         emitter: ProducerScope<QuerySnapshot>
-    ) {
-        if (groupIds.size > MAX_CHANNEL_SIZE || groupIds.isNullOrEmpty()) return
-        FireStoreChatRef.getGroupCollection()
+    ): ListenerRegistration? {
+        if (groupIds.size > MAX_CHANNEL_SIZE || groupIds.isNullOrEmpty()) return null
+        return FireStoreChatRef.getGroupCollection()
             .whereIn(FIRE_STORE_GROUP_ID, groupIds)
             .orderBy(
                 "$FIRE_STORE_GROUP_LAST_MESSAGE.$FIRE_STORE_MESSAGE_CREATED_AT",
@@ -155,8 +147,6 @@ internal class FireStoreChatGroupServiceImpl @Inject constructor() : IFireStoreC
             )
             .addSnapshotListener { value, error ->
                 emitter.onProducerScopeOffer(error, value)
-            }.apply {
-                groupsListener.add(this)
             }
     }
 

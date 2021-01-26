@@ -80,7 +80,6 @@ internal class MessageRepositoryImpl @Inject constructor(
     }
 
     override suspend fun release() {
-        chatGroupFireStore.removeLastGroupObserver()
         chatMessageFireStore.removeMessagesObserver()
     }
 
@@ -104,7 +103,7 @@ internal class MessageRepositoryImpl @Inject constructor(
         )
     }
 
-    private suspend fun createNewUsersWithLastSeen(
+    private fun createNewUsersWithLastSeen(
         members: List<FireStoreUser>
     ): List<FireStoreUser> {
         val newListMembers = ArrayList<FireStoreUser>()

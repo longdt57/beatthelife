@@ -9,4 +9,10 @@ interface ViewInterface<V> {
     fun setupViewModel()
 
     fun initViewModel() {}
+
+    fun showLoading() {}
+
+    fun hideLoading() {}
+
+    fun refresh() {}
 }

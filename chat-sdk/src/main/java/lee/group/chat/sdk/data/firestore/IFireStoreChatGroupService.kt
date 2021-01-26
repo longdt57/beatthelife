@@ -21,10 +21,6 @@ internal interface IFireStoreChatGroupService {
         fireStoreMessage: FireStoreMessage
     ): Flow<Unit>
 
-    suspend fun removeAllGroupsObserver()
-
-    suspend fun removeLastGroupObserver()
-
     suspend fun removeGroup(groupId: String): Flow<Unit>
 
     suspend fun markAllMessagesAsRead(

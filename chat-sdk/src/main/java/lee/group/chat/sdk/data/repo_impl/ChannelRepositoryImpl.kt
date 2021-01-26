@@ -36,10 +36,6 @@ internal class ChannelRepositoryImpl @Inject constructor(
     override suspend fun fetchNextChannels() {
     }
 
-    override suspend fun removeChannelsObserver() {
-        chatGroupFireStore.removeAllGroupsObserver()
-    }
-
     override suspend fun removeChannel(
         groupId: String
     ): Flow<Unit> = chatGroupFireStore.removeGroup(groupId)

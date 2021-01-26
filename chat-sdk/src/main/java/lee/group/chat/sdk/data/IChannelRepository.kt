@@ -11,7 +11,5 @@ interface IChannelRepository {
 
     suspend fun fetchNextChannels()
 
-    suspend fun removeChannelsObserver()
-
     suspend fun removeChannel(groupId: String): Flow<Unit>
 }

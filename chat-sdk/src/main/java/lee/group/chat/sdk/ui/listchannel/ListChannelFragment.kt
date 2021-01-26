@@ -40,6 +40,9 @@ class ListChannelFragment :
 
     override fun setupUI() {
         setupRecyclerView()
+        binding.swipeRefresh.setOnRefreshListener {
+            refresh()
+        }
     }
 
     override fun setupViewModel() {
@@ -47,12 +50,23 @@ class ListChannelFragment :
             viewLifecycleOwner,
             {
                 adapter.submitList(it)
+                hideLoading()
             }
         )
     }
 
     override fun initViewModel() {
         super.initViewModel()
+        refresh()
+    }
+
+    override fun hideLoading() {
+        super.hideLoading()
+        binding.swipeRefresh.isRefreshing = false
+    }
+
+    override fun refresh() {
+        super.refresh()
         viewModel.getChannels()
     }
 
