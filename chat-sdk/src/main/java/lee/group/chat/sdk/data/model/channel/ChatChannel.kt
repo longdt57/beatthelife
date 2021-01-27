@@ -2,7 +2,7 @@ package lee.group.chat.sdk.data.model.channel
 
 import android.os.Parcelable
 import androidx.annotation.Keep
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 import lee.group.chat.sdk.data.model.ChatMessage
 import lee.group.chat.sdk.data.model.ChatUser
 

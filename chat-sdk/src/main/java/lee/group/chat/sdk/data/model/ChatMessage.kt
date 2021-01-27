@@ -4,7 +4,7 @@ import android.os.Parcelable
 import androidx.annotation.Keep
 import androidx.annotation.StringDef
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 import lee.group.chat.sdk.data.model.MessageStatus.Companion.FAILED
 import lee.group.chat.sdk.data.model.MessageStatus.Companion.SENDING
 import lee.group.chat.sdk.data.model.MessageStatus.Companion.SUCCESS

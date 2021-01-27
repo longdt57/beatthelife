@@ -3,16 +3,16 @@
 
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_baseline_roofing_24"
+        android:icon="@drawable/ic_baseline_home_24"
         android:title="@string/title_home" />
 
     <item
         android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/ic_baseline_coronavirus_24"
+        android:icon="@drawable/ic_baseline_inbox_24"
         android:title="@string/title_health" />
 
     <item
         android:id="@+id/navigation_notifications"
-        android:icon="@drawable/ic_baseline_connect_without_contact_24"
+        android:icon="@drawable/ic_baseline_account_24"
         android:title="@string/title_relation" />
 </menu>

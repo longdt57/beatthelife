@@ -3,7 +3,7 @@ package lee.group.chat.sdk.data.firestore.model
 import android.os.Parcelable
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 import lee.group.chat.sdk.data.firestore.utils.FIRE_STORE_GROUP_ID
 import lee.group.chat.sdk.data.firestore.utils.FIRE_STORE_GROUP_LAST_MESSAGE
 import lee.group.chat.sdk.data.firestore.utils.FIRE_STORE_GROUP_REMOVED
