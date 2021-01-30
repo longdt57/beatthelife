@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by do thanh long on 1/27/21 2:17 PM.
+  ~ Copyright (c) 2021. All rights reserved.
+  ~ Last modified 1/27/21 2:17 PM
+  -->
+
+<resources>
+    <string name="com_auth0_client_id">OxJKR5nQNSUvAobLdkdOmiCzM4PdQQOz</string>
+    <string name="com_auth0_domain">longdt57.us.auth0.com</string>
+</resources>

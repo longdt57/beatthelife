@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by do thanh long on 1/27/21 4:34 PM.
+  ~ Copyright (c) 2021. All rights reserved.
+  ~ Last modified 1/27/21 4:34 PM
+  -->
+
+<resources>
+    <string name="auth0_audience_url">https://%s/userinfo</string>
+    <string name="auth0_scheme">demo</string>
+
+
+    <string name="authentication_failed">Sign In failed</string>
+    <string name="sign_in">Sign In By Firebase</string>
+    <string name="sign_in_by_auth">Sign In By Auth 0</string>
+    <string name="sign_out">Sign Out</string>
+</resources>

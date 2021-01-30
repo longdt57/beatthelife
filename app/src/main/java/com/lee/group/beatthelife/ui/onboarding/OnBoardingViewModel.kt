@@ -1,20 +1,11 @@
 package com.lee.group.beatthelife.ui.onboarding
 
-import com.lee.group.beatthelife.data.IEventRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import lee.group.core.base.viewmodel.BaseViewModel
+import lee.group.auth.base.BaseAuthenticatedViewModel
+import lee.group.auth.data.IAuthRepository
 
 @HiltViewModel
 class OnBoardingViewModel @Inject constructor(
-    private val eventRepo: IEventRepository
-) : BaseViewModel() {
-
-    fun logEventSignedIn() {
-        eventRepo.logEventLogin()
-    }
-
-    fun logDeviceType() {
-        eventRepo.trackDeviceType()
-    }
-}
+    auth: IAuthRepository
+) : BaseAuthenticatedViewModel(auth)

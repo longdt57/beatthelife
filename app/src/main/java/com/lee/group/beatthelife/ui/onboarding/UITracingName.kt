@@ -1,4 +1,4 @@
-package com.lee.group.beatthelife.ui.utils
+package com.lee.group.beatthelife.ui.onboarding
 
 internal object UITracingName {
 

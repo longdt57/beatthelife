@@ -25,6 +25,14 @@ android {
         versionName = AppConfig.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // ---> Add the next line
+        manifestPlaceholders(
+            mutableMapOf(
+                "auth0Domain" to "@string/com_auth0_domain",
+                "auth0Scheme" to "demo"
+            )
+        )
     }
 
     signingConfigs {
@@ -89,12 +97,12 @@ dependencies {
     addLifeCycle()
     addTimber()
 
-    implementation(project(":core"))
-    implementation(project(":chat-sdk"))
-    implementation(project(":tracking"))
+    leeImplementation(project(":core"))
+    leeImplementation(project(":chat-sdk"))
+    leeImplementation(project(":tracking"))
+    leeImplementation(project(":auth"))
 
     addFireBase()
-    implementation(AppDependencies.firebaseAuth)
     implementation(AppDependencies.firebasePerf)
     implementation(AppDependencies.firebaseCrashytics)
     implementation(AppDependencies.firebaseAnalytics)

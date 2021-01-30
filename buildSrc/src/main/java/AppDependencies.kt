@@ -59,6 +59,19 @@ object AppDependencies {
     // Glide
     private const val glideVersion = "4.11.0"
     const val glide = "com.github.bumptech.glide:glide:$glideVersion"
+
+    // Room
+    private const val room_version = "2.2.6"
+
+    const val roomRuntime = "androidx.room:room-runtime:$room_version"
+    const val roomCompiler = "androidx.room:room-compiler:$room_version"
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    const val roomKtx = "androidx.room:room-ktx:$room_version"
+
+    // Cipher
+    const val sqlCipher = "net.zetetic:android-database-sqlcipher:4.4.2"
+    const val sqlite = "androidx.sqlite:sqlite:2.0.1"
 }
 
 object Network {

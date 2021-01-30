@@ -12,9 +12,10 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.lee.group.beatthelife.databinding.ActivityMainBinding
-import com.lee.group.beatthelife.ui.base.BaseAuthenticatedActivity
+import com.lee.group.beatthelife.ui.utils.redirectToOnBoardingScreen
 import com.lee.group.beatthelife.ui.utils.setupTrackerUserId
 import dagger.hilt.android.AndroidEntryPoint
+import lee.group.auth.base.BaseAuthenticatedActivity
 
 @AndroidEntryPoint
 class MainActivity : BaseAuthenticatedActivity<ActivityMainBinding, MainViewModel>() {
@@ -26,11 +27,10 @@ class MainActivity : BaseAuthenticatedActivity<ActivityMainBinding, MainViewMode
     override val viewModel: MainViewModel by viewModels()
 
     override fun setupUI() {
+        viewModel.logDeviceType()
         setupNavigation()
         setupTrackerUserId()
     }
-
-    override fun setupViewModel() = Unit
 
     private fun setupNavigation() {
         val navView: BottomNavigationView = binding.navView
@@ -46,4 +46,10 @@ class MainActivity : BaseAuthenticatedActivity<ActivityMainBinding, MainViewMode
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
+
+    override fun onSignedOut() {
+        redirectToOnBoardingScreen()
+    }
+
+    override fun onSignedIn() = Unit
 }

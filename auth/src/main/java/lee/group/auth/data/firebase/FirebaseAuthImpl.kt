@@ -1,17 +1,16 @@
-package com.lee.group.beatthelife.data.impl
+package lee.group.auth.data.firebase
 
 import android.content.Context
 import com.firebase.ui.auth.AuthUI
-import com.lee.group.beatthelife.data.IBeoURepository
 import javax.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 
-class BeoURepositoryImpl @Inject constructor(
+internal class FirebaseAuthImpl @Inject constructor(
     private val context: Context
-) : IBeoURepository {
+) : IFirebaseAuth {
 
     @ExperimentalCoroutinesApi
     override suspend fun signOut(): Flow<Boolean> = callbackFlow {

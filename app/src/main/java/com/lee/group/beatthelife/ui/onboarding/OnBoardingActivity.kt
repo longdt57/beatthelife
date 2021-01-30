@@ -1,21 +1,17 @@
 package com.lee.group.beatthelife.ui.onboarding
 
+import android.content.Intent
 import androidx.activity.viewModels
-import androidx.core.view.isVisible
-import com.google.firebase.perf.metrics.AddTrace
-import com.lee.group.beatthelife.R
 import com.lee.group.beatthelife.databinding.ActivityOnboardingBinding
-import com.lee.group.beatthelife.ui.utils.UITracingName.TRACING_ON_BOARDING_SCREEN_SETUP_UI
-import com.lee.group.beatthelife.ui.utils.checkAuthentication
-import com.lee.group.beatthelife.ui.utils.getActivityResultLauncher
-import com.lee.group.beatthelife.ui.utils.getSignInIntent
 import com.lee.group.beatthelife.ui.utils.redirectToMainScreen
-import com.lee.group.beatthelife.ui.utils.setupTrackerUserId
 import dagger.hilt.android.AndroidEntryPoint
-import lee.group.core.base.view.binding.BaseBindingActivity
+import lee.group.auth.base.BaseAuthenticatedActivity
+import lee.group.auth.ui.login.LoginActivity
+import lee.group.core.ext.getActivityResultLauncher
 
 @AndroidEntryPoint
-class OnBoardingActivity : BaseBindingActivity<ActivityOnboardingBinding, OnBoardingViewModel>() {
+class OnBoardingActivity :
+    BaseAuthenticatedActivity<ActivityOnboardingBinding, OnBoardingViewModel>() {
 
     override fun provideBinding(): ActivityOnboardingBinding {
         return ActivityOnboardingBinding.inflate(layoutInflater)
@@ -23,45 +19,22 @@ class OnBoardingActivity : BaseBindingActivity<ActivityOnboardingBinding, OnBoar
 
     override val viewModel: OnBoardingViewModel by viewModels()
 
-    @AddTrace(name = TRACING_ON_BOARDING_SCREEN_SETUP_UI)
-    override fun setupUI() {
-        viewModel.logDeviceType()
-        startAuthentication()
-        binding.btnSignIn.setOnClickListener {
-            openFirebaseUISignIn()
-        }
-    }
-
-    override fun setupViewModel() = Unit
-
-    private fun startAuthentication() {
-        checkAuthentication(
-            signedInCallback = {
-                onAuthenticationSuccess()
-            }
-        )
-    }
-
-    private fun onAuthenticationSuccess() {
+    override fun onSignedIn() {
         redirectToMainScreen()
     }
 
-    private fun onAuthenticationFailed() {
-        binding.tvNotification.text = getString(R.string.authentication_failed)
-        binding.tvNotification.isVisible = true
-    }
-
-    private fun openFirebaseUISignIn() {
-        val intent = getSignInIntent()
+    override fun onSignedOut() {
+        val intent = Intent(this, LoginActivity::class.java)
         loginLauncher.launch(intent)
     }
 
+    override fun setupUI() = Unit
+
     private val loginLauncher = getActivityResultLauncher(
         onSuccess = {
-            setupTrackerUserId()
-            viewModel.logEventSignedIn()
-            onAuthenticationSuccess()
+            redirectToMainScreen()
         },
-        onFailed = { onAuthenticationFailed() }
+        onFailure = {
+        }
     )
 }

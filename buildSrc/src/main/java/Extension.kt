@@ -71,8 +71,19 @@ fun DependencyHandler.addFireBase() {
     leeImplementation(platform("com.google.firebase:firebase-bom:26.2.0"))
 }
 
-fun DependencyHandler.addsRetrofit(configurationName: String = "api") {
+fun DependencyHandler.addsRetrofit(configurationName: String = "implementation") {
     add(configurationName, Network.retrofit)
     add(configurationName, Network.retrofit_gson)
     add(configurationName, Network.retrofit_adapter_rxjava2)
+}
+
+fun DependencyHandler.addRoom(configurationName: String = "implementation") {
+    add("implementation", AppDependencies.roomRuntime)
+    add("implementation", AppDependencies.roomKtx)
+    add("kapt", AppDependencies.roomCompiler)
+}
+
+fun DependencyHandler.addCipher(configurationName: String = "implementation") {
+    add("implementation", AppDependencies.sqlCipher)
+    add("implementation", AppDependencies.sqlite)
 }

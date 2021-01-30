@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by do thanh long on 1/27/21 12:17 PM.
+  ~ Copyright (c) 2021. All rights reserved.
+  ~ Last modified 1/27/21 12:17 PM
+  -->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="lee.group.auth">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application>
+        <activity android:name=".ui.login.LoginActivity"
+            android:launchMode="singleTask"/>
+    </application>
+</manifest>
