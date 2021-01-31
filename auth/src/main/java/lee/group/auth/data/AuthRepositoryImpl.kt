@@ -6,6 +6,7 @@
 
 package lee.group.auth.data
 
+import com.google.firebase.auth.FirebaseAuth
 import javax.inject.Inject
 import lee.group.auth.data.auth0.Auth0Repository
 
@@ -14,6 +15,6 @@ internal class AuthRepositoryImpl @Inject constructor(
 ) : IAuthRepository {
 
     override fun isLogin(): Boolean {
-        return auth0Repository.isLogin()
+        return auth0Repository.isLogin() || FirebaseAuth.getInstance().currentUser != null
     }
 }
