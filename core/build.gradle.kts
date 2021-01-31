@@ -42,6 +42,7 @@ dependencies {
     addNavigation()
     addReactiveX()
     addTimber()
+    addsRetrofit()
 
     implementation("androidx.security:security-crypto:1.1.0-alpha03")
 }
