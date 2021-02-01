@@ -28,6 +28,10 @@ class ListChannelViewModel @Inject constructor(
 
     val listChannel: MutableLiveData<List<BaseChannel>> = SingleLiveData()
 
+    init {
+        addMessage("Hello, Time is: ${System.currentTimeMillis()}")
+    }
+
     fun getChannels() {
         viewModelScope.launch {
             channelRepository.observeAllChannels()
@@ -42,5 +46,11 @@ class ListChannelViewModel @Inject constructor(
     }
 
     fun loadMore() {
+    }
+
+    fun addMessage(message: String) {
+        viewModelScope.launch {
+            val result = channelRepository.addMessage(message)
+        }
     }
 }

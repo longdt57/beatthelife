@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by do thanh long on 1/31/21 10:55 PM.
+  ~ Copyright (c) 2021. All rights reserved.
+  ~ Last modified 1/31/21 10:55 PM
+  -->
+
+<resources>
+    <string name="chat_end_point">https://us-central1-beat-the-life.cloudfunctions.net/</string>
+</resources>

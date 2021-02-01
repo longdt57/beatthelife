@@ -8,4 +8,3 @@ sealed class BaseResult<out R> {
 fun <T> T.toResult() = BaseResult.ResultSuccess(this)
 
 fun Throwable.toResult() = BaseResult.ResultError(this)
-
