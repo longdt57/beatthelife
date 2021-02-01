@@ -17,10 +17,12 @@ fun Context.getDeviceId(): String {
 }
 
 fun Context.getUserAgent(): String {
-    val packageName = packageName.replace("com.lee.group.", "")
-    val version = packageManager.getPackageInfo(packageName, 0).versionName
-    val userAgent = System.getProperty("http.agent")
-    return "$packageName/$version $userAgent"
+    // Todo("Not implemented yet")
+//    val packageName = packageName.replace("com.lee.group.", "")
+//    val version = packageManager.getPackageInfo(packageName, 0).versionName
+//    val userAgent = System.getProperty("http.agent")
+//    return "$packageName/$version $userAgent"
+    return "userAgent"
 }
 
 fun Context.toast(message: CharSequence, isLengthLong: Boolean = true) {
