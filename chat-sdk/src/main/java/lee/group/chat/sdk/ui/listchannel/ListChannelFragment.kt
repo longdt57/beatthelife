@@ -10,8 +10,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import lee.group.chat.sdk.R
 import lee.group.chat.sdk.data.model.channel.BaseChannel
 import lee.group.chat.sdk.data.model.channel.ChatChannel
 import lee.group.chat.sdk.databinding.FragmentListChannelBinding
@@ -42,6 +44,9 @@ class ListChannelFragment :
         setupRecyclerView()
         binding.swipeRefresh.setOnRefreshListener {
             refresh()
+        }
+        binding.btnFloatingAction.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.navigation_new_channel)
         }
     }
 
