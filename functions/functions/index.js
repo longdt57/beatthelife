@@ -20,7 +20,7 @@ exports.addMessage = functions.https.onRequest(async (req, res) => {
   // Push the new message into Firestore using the Firebase Admin SDK.
   const writeResult = await admin.firestore().collection('messages').add({original: original});
   // Send back a message that we've successfully written the message
-  res.json({data: {`message_id`: `${writeResult.id} added.`}});
+  res.json({data: {message_id: `${writeResult.id} added.`}});
 });
 
 // Listens for new messages added to /messages/:documentId/original and creates an
