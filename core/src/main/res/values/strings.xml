@@ -11,4 +11,5 @@
     <string name="template_long" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</string>
     <string name="content_description">Beo U</string>
     <string name="login">Login</string>
+    <string name="search">Search</string>
 </resources>

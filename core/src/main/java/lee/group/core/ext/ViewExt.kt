@@ -6,18 +6,41 @@
 
 package lee.group.core.ext
 
-import androidx.fragment.app.Fragment
+import android.view.View
+import android.view.ViewTreeObserver
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-fun Fragment.replaceFragment(
-    target: Fragment,
-    addToBackStack: Boolean = false,
-    containerId: Int = android.R.id.content,
-    tag: String? = null
+fun BottomSheetDialogFragment.initBottomSheetBehavior(
+    bottomSheetBehavior: BottomSheetBehavior<View?>? = null
 ) {
-    parentFragmentManager.beginTransaction()
-        .replace(containerId, target, tag)
-        .apply {
-            if (addToBackStack) addToBackStack(null)
+    bottomSheetBehavior?.let {
+        it.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+            override fun onSlide(bottomSheet: View, slideOffset: Float) = Unit
+
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+                when (newState) {
+                    BottomSheetBehavior.STATE_COLLAPSED,
+                    BottomSheetBehavior.STATE_HIDDEN,
+                    BottomSheetBehavior.STATE_HALF_EXPANDED -> {
+                        activity?.onBackPressed()
+                    }
+                    else -> Unit
+                }
+            }
+        })
+        it.peekHeight = 0
+        it.state = BottomSheetBehavior.STATE_EXPANDED
+    }
+}
+
+fun <T : View> T.afterMeasured(f: T.() -> Unit) {
+    viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+        override fun onGlobalLayout() {
+            if (measuredWidth > 0 && measuredHeight > 0) {
+                viewTreeObserver.removeOnGlobalLayoutListener(this)
+                f()
+            }
         }
-        .commit()
+    })
 }

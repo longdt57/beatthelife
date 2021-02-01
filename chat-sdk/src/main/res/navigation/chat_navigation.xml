@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_list_channel">
+
+    <fragment
+        android:id="@+id/navigation_list_channel"
+        android:name="lee.group.chat.sdk.ui.listchannel.ListChannelFragment"
+        android:label=""
+        tools:layout="@layout/fragment_list_channel" >
+        <action
+            android:id="@+id/action_navigation_list_channel_to_navigation_new_channel"
+            app:destination="@id/navigation_new_channel" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_new_channel"
+        android:name="lee.group.chat.sdk.ui.newchannel.NewChannelFragment"
+        android:label=""
+        tools:layout="@layout/fragment_new_channel" />
+
+</navigation>
